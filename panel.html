@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel - RETRAI 2025</title>
+  <style>
+    :root{
+      --bg:#ffffff;--text:#222;--muted:#5f6b7a;--brand:#2c3e50;--brand-2:#1abc9c;--card:#f7f9fc;--border:#e6eaf0
+    }
+    *{box-sizing:border-box}
+    body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:var(--bg);color:var(--text)}
+    header{background-color:var(--brand);padding:1.25rem 1rem;color:#fff;text-align:center}
+    header h1{margin:0 0 .25rem 0;font-size:1.85rem;letter-spacing:.2px}
+    header h2{margin:.25rem 0 0 0;font-weight:500;font-size:1rem;opacity:.95}
+
+    nav{background-color:#34495e;padding:.5rem}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap}
+    nav li{margin:0 15px}
+    nav a{color:#fff;text-decoration:none;font-weight:700;transition:color .25s ease}
+    nav a:hover{color:var(--brand-2)}
+
+    main{padding:2rem 1rem;max-width:1100px;margin:0 auto}
+
+    /* Panel intro */
+    .panel-intro{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+    .panel-intro h2{margin:.25rem 0 .5rem 0;font-size:1.75rem;text-align:center}
+    .panel-meta{display:flex;gap:.75rem;flex-wrap:wrap;color:var(--muted);font-size:.9rem;justify-content:center;margin:.25rem 0 .75rem}
+    .pill{background:#eaf7f3;border:1px solid #d6eee5;color:#1b6f5b;border-radius:999px;padding:.15rem .55rem}
+    .panel-desc{line-height:1.6;margin:0 auto;max-width:70ch}
+
+    /* Panelists */
+    .panelists{margin-top:2rem}
+    .panelists h3{font-size:1.5rem;margin:0 0 .75rem 0;text-align:center}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem;align-items:start}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;display:grid;grid-template-columns:140px 1fr;gap:1rem}
+    .photo{width:140px;height:140px;border-radius:12px;object-fit:cover;border:1px solid var(--border);background:#fff}
+    .name{margin:.1rem 0 0 0;font-size:1.25rem}
+    .affil{margin:.15rem 0 .5rem 0;color:var(--muted);font-size:.95rem}
+    .bio{line-height:1.55}
+    .links{margin-top:.35rem}
+    .links a{color:#3498db;text-decoration:none}
+    .links a:hover{text-decoration:underline}
+
+    @media (max-width: 720px){
+      .card{grid-template-columns:1fr}
+      .photo{width:100%;height:240px}
+    }
+
+    footer{background-color:var(--brand);color:#fff;padding:1rem 0;text-align:center;margin-top:2rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RETRAI Workshop</h1>
+    <h2><b>R</b>equirement <b>E</b>ngineering for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
+  </header>
+
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#call-for-papers">Call for Papers</a></li>
+      <li><a href="program.html">Program</a></li>
+      <li><a href="keynote.html">Keynotes</a></li>
+      <li><a href="panel.html" aria-current="page">Panel</a></li>
+      <li><a href="index.html#organizers">Organizers</a></li>
+      <li><a href="index.html#venue">Venue</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Panel description -->
+    <section class="panel-intro" aria-labelledby="panel-title">
+      <h2 id="panel-title">Panel: Defining Trustworthiness for Intelligent Agents</h2>
+      <div class="panel-meta" role="list">
+        <span class="pill" role="listitem">Roundtable</span>
+        <span class="pill" role="listitem">Q&A with audience</span>
+        <span class="pill" role="listitem">Interdisciplinary</span>
+      </div>
+      <p class="panel-desc">
+        This panel brings together experts across psychology, machine learning, and software/requirements engineering to unpack what
+        <em>trustworthiness</em> means for human-facing AI agents. Topics will cover how stakes in different domains influence priorities, how to balance precision and verifiability with values and obligations, where the main governance and methodological gaps lie, and what role both the research community and society more broadly should play in shaping and implementing trustworthy AI behavior.
+      </p>
+    </section>
+
+    <!-- Panelists -->
+    <section class="panelists" aria-labelledby="panelists-title">
+      <h3 id="panelists-title">Panelists</h3>
+      <div class="grid">
+		<!-- Panelist 3 (placeholder: replace image/src and text) -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="photo" src="AMEL.jpeg" alt="Portrait of Panelist 3" itemprop="image" />
+          <div>
+            <h4 class="name" itemprop="name">Amel Bennaceur</h4>
+            <div class="affil" itemprop="affiliation">School of Computing at the Open University, UK</div>
+            <p class="bio" itemprop="description">
+              Dr. Amel Bennaceur is an associate professor and director of research at the School of Computing at the Open University, UK. Her research focuses on formally-grounded and practice-informed software engineering methods and techniques to ensure the trustworthiness and resilience of intelligent systems. She published the results of this work in 60+ papers in top journals and conferences (TOSEM, TSE, Middleware, and ECSA) in research areas such as Software Engineering and Distributed Systems. She contributed to several EU and EPSRC research projects.
+            </p>
+          </div>
+        </article>
+
+        <!-- Panelist 2 (placeholder: replace image/src and text) -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="photo" src="NIKITA.jpg" alt="Portrait of Panelist 2" itemprop="image" />
+          <div>
+            <h4 class="name" itemprop="name">Nikita Dvornik</h4>
+            <div class="affil" itemprop="affiliation">Palona AI, Montréal, Canada</div>
+            <p class="bio" itemprop="description">
+              Dr. Nikita Dvornik is a Lead Research Scientist working on AI agents for e-commerce. He has 10 years of experience across computer vision, robotics, autonomous driving, with a PhD from INRIA, France. His current work focuses on testing and benchmarking LLM Agents, with an emphasis on trustworthy and reliable AI systems.
+            </p>
+          </div>
+        </article>
+        
+        <!-- Panelist 1 -->
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="photo" src="REEM.jpg" alt="Portrait of Reem Ayad" itemprop="image" />
+          <div>
+            <h4 class="name" itemprop="name">Reem Ayad</h4>
+            <div class="affil" itemprop="affiliation">Department of Psychology, University of Toronto</div>
+            <p class="bio" itemprop="description">
+              Reem Ayad is a PhD candidate and SSHRC Doctoral Fellow whose research examines the moral consequences of human–AI relationships and aims to codify socio‑relational norms unique to human–AI interaction. She holds a BSc from the University of Toronto and an LLB from University College London and is a Graduate Affiliate at the Schwartz Reisman Institute for Technology and Society.
+            </p>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- Moderator (optional) -->
+    <section class="panelists" aria-labelledby="moderator-title">
+      <h3 id="moderator-title">Moderator</h3>
+      <div class="grid">
+        <article class="card" itemscope itemtype="https://schema.org/Person">
+          <img class="photo" src="ISOBEL.JPG" alt="Portrait of the Moderator" itemprop="image" />
+          <div>
+            <h4 class="name" itemprop="name">Isobel Standen</h4>
+            <div class="affil" itemprop="affiliation">Philosophy department at the University of York</div>
+            <p class="bio" itemprop="description">Isobel Standen is a third-year PhD student in the Department of Philosophy and a researcher from the Centre for Assuring Autonomy. Her work is at the intersection of philosophy and computer science, where she is involved in projects that bring together multidisciplinary researchers for collaboration. Isobel’s research explores human understanding and decision making, specifically human 'common sense', and how the lack of this capacity may be one of the leading causes of errors made by AI systems.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+  </footer>
+</body>
+</html>

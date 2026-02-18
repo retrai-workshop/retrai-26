@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETRAI 2025</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #2c3e50; }
+        header { background-color: #2c3e50; padding: 1em 0; color: white; text-align: center; }
+        nav { background-color: #34495e; padding: 0.5em; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav ul li { margin: 0 15px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; transition: color 0.3s ease; }
+        nav ul li a:hover { color: #1abc9c; }
+        main { padding: 2em; max-width: 1000px; margin: 0 auto; }
+        h2, h3 { margin-top: 0; }
+        .schedule { display: grid; grid-template-columns: 120px 1fr; gap: 14px 20px; align-items: start; }
+        .slot-time { font-weight: bold; color: #34495e; text-align: right; padding-top: 2px; white-space: nowrap; }
+        .slot-detail { background: #f6f8fa; border: 1px solid #e1e5ea; border-radius: 8px; padding: 14px 16px; }
+        .badge { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #1abc9c; color: #fff; margin-left: 8px; vertical-align: middle; }
+        .papers { margin: 10px 0 0 0; padding-left: 18px; }
+        .papers li { margin: 6px 0; }
+        .note { font-size: 0.95em; color: #5d6d7e; margin-top: 8px; }
+        .block-title { font-weight: bold; font-size: 1.05em; }
+        footer { background-color: #2c3e50; color: white; padding: 1em 0; text-align: center; width: 100%; bottom: 0; }
+        @media (max-width: 700px) { .schedule { grid-template-columns: 1fr; } .slot-time { text-align: left; } }
+        .authors { margin-top: 6px; font-size: 0.9em; color: #2c3e50; padding-left: 12px; border-left: 3px solid #1abc9c; }
+        .author { margin: 2px 0; }
+        .author strong { font-weight: 600; color: #34495e; }
+        .affil { display: inline-block; margin-left: 4px; color: #5d6d7e; font-style: italic; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RETRAI Workshop</h1>
+        <h2><b>R</b>equirement <b>E</b>ngineering
+for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#call-for-papers">Call for Papers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="keynote.html">Keynotes</a></li>
+            <li><a href="panel.html">Panel</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+            <li><a href="#venue">Venue</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home">
+            <h2>Welcome to RETRAI 2025</h2>
+            <p style="text-align: left;">AI-based systems are increasingly integrated into societal infrastructures, performing daily tasks alongside humans and influencing critical decision-making processes. However, unlike human actions, which are governed by comprehensive legislation and enforcement procedures, AI systems are often built and deployed without clearly specifying the requirements necessary to ensure their responsible, and trustworthy operation. Clearly specifying requirements is important to ensuring that AI systems can be safely and responsibly integrated into society. Without well-defined requirements, it becomes difficult to assess whether such systems meet expectations for accountability, fairness, and ethical behavior. The complexity of this task is compounded by the need for multidisciplinary expertise, encompassing legal, ethical, and domain-specific knowledge.<b> R</b>equirement <b>E</b>ngineering for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence proposed (<b>RETRAI</b>) workshop aims to bring together researchers and practitioners from these diverse fields to collaboratively establish a foundation for requirements engineering techniques specifically tailored for trustworthy AI-based systems. By fostering collaboration among multidisciplinary experts, this workshop will provide a platform to collect, refine, and share requirements that can be reused, extended, or adapted for future systems.</p>
+        </section>
+        <section id="call-for-papers">
+			<h2>Call for Papers</h2>
+			 <p style="text-align: left;"><b>RETRAI 2025</b> is the first Requirements Engineering (RE) workshop that specifically addresses the specification, debugging, and compliance of requirements for trustworthy AI-based systems. As the interaction between these systems and humans continues to grow, the importance of embedding trustworthiness considerations into the design and development process becomes increasingly important. The workshop aims to discuss the challenges associated with developing trustworthy AI systems and highlights the necessity of engaging the requirements engineering community in tackling these issues.</p>
+            <h3>Topics of interest</h2>
+            <p style="text-align: left;">The topics of the workshop include, but are not restricted to:</p>
+            <ul style="margin-bottom: 15px; position: relative; padding-left: 20px; text-align: left;">
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Requirement elicitation for trustworthy AI systems</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Managing evolving requirements: adapting to legislative changes or societal progress</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Requirements for open capability AI-based systems (e.g., LLM-based ones)</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Prioritization of requirements for trustworthy AI</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Trade-offs in defining trustworthiness properties</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Challenges and need in gathering requirements for trustworthy AI</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Customizable, parameterizable, and universal ethical or empathetic requirements</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Social, legal, and cultural requirements for trustworthy AI</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Managing interactions between individual, group, and universal ethical requirements</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Requirement engineering approaches for trustworthy AI systems</li>
+				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;">  Teaching Trustworthy AI</li>
+            </ul>
+        </section>
+         <section id="dates">
+            <h3>Important Dates</h3>
+            <table>
+				<tbody>
+					<tr>
+						<td>Abstract Submission Deadline</td>
+						<td>Mon 2 Jun 2025</td>
+					</tr>
+					<tr>
+						<td>Full Paper Submission Deadline</td>
+						<td>Mon 9 Jun 2025</td>
+					</tr>
+					<tr>
+						<td>Notification of Acceptance</td>
+						<td>Mon 30 Jun 2025</td>
+					</tr>
+					<tr>
+						<td>Camera-Ready Submission</td>
+						<td>Friday 14 July 2025</td>
+					</tr>
+					<tr>
+						<td>Workshop Dates</td>
+						<td>Mon 1 September 2025</td>
+					</tr>
+				</tbody>
+			</table>
+        </section>
+        
+        <section id="guidelibes">
+			<h3>Paper submission guidelines</h3>
+			<p> We accept papers in four categories:</p>
+			<ul>
+				<li>Short papers (3-4 pages) that state the authors’ position within the scope of the workshop and may describe solution concepts in a preliminary state.</li>
+				<li>Full papers (6-10 pages) that address problems, needs, novel approaches, and frameworks relevant to the workshop. Evaluations of new approaches must be included in full papers. Empirical evaluation papers and industrial experience reports are also welcome submissions.</li>
+				<li>Case-study papers that present a specific AI-based system, along with the corresponding trustworthy requirements.</li>
+				<li>Extended abstracts that present teaching materials or tutorials on trustworthy AI.</li>
+			</ul>
+			
+			
+		<p>All papers submitted to the RETRAI 2025 workshop must be written in
+English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTeX users: please use the LaTeX class file <a href="https://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/IEEEtran.cls">IEEEtran v1.8</a> and the following configuration (without option ‘compsoc’ or ‘compsocconf’): \documentclass[conference]{IEEEtran}. </p>
+
+		<p>Word users: please use this <a href="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/conference-template-letter.docx">Word template</a>.</p>
+
+
+        </section>
+        
+          <section id="dates">
+            <h3>Submit Here</h3>
+            <p>Submit via <a href="https://easychair.org/conferences/?conf=retrai25">EasyChair</a>.</p>
+        </section>
+        
+        <section id="organizers">
+		<h2>Organizers</h2>
+		<div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+			<div style="text-align: center; max-width: 200px;">
+				<strong>Lina Marsso</strong><br>
+				Computer engineering and software engineering department at Polytechnique Montréal <br>
+				<a href="mailto:lina.marsso@polymtl.ca" style="color: #3498db; text-decoration: none;">lina.marsso@polymtl.ca</a>
+			</div>
+			<div style="text-align: center; max-width: 200px;">
+				<strong>Isobel Standen</strong><br>
+				Philosophy department at the University of York<br>
+				<a href="mailto:isobel.standen@york.ac.uk" style="color: #3498db; text-decoration: none;">isobel.standen@york.ac.uk</a>
+			</div>
+			<div style="text-align: center; max-width: 200px;">
+				<strong>Walid Maalej</strong><br>
+				Informatics department at University of Hamburg<br>
+				<a href="mailto:walid.maalej@uni-hamburg.de" style="color: #3498db; text-decoration: none;">walid.maalej@uni-hamburg.de</a>
+			</div>
+		</div>
+		</section>
+		
+        <section id="PC">
+            <h2>Program Committee</h2>
+            <ul class="centered-list">
+				<li>Reem Ayad, University of Toronto, Canada</li>
+				<li>Amel Bennaceur, Open University, UK</li>
+				<li>Nikita Dvornik, Palona AI, Canada</li>
+				<li>Imen Benzarti, ETS Montreal, Canada</li>
+				<li>Markus Borg, CodeScene Sweden</li>
+				<li>Hideaki Hata, Shinshu University, Japan</li>
+				<li>Jennifer Horkoff, University of Gothenburg, Sweden</li>
+				<li>Khan Mohammad Habibullah, Chalmers University of Technology, Sweden</li>
+				<li>Sophia Jit, University of Toronto, Canada</li>
+				<li>Kenneth	Johnson, Auckland University of Technology, New Zealand</li>
+				<li>Victória Oldemburgo de Mello, University of Toronto, Canada</li>
+				<li>Hugo Villamizar, Fortiss GmbH, Germany</li>
+				<li>Elda Paja, IT University of Copenhagen, Denmark</li>
+				<li>Jialiang Wei, IMT Mines Ales, France</li>
+				<li>Mona Rahimi, Northern Illinois University, USA</li>
+				<li>Camille Salinesi, Université Paris 1, France</li>
+				<li>Carla Taciana Lima Lourenco Silva, Universidade Federal de Pernambuco, Brasil</li>
+				<li>Beverley Townsend, BRAID, UK</li>
+				<li>Sinem Getir Yaman, University of York, UK</li>
+
+            </ul>
+            
+    </section>
+
+        <section id="venue">
+            <h2>Venue</h2>
+            <p style="text-align: left;">Co-located with the 33rd International Conference on Requierment Engineering (<a href="https://conf.researchr.org/home/RE-2025">RE'2025</a>), in Valencia, Spain.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+    </footer>
+</body>
+</html>

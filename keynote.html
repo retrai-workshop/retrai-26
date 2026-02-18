@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keynotes - RETRAI 2025</title>
+    <style>
+        :root{
+            --bg:#ffffff;--text:#222;--muted:#5f6b7a;--brand:#2c3e50;--brand-2:#1abc9c;--card:#f7f9fc;--border:#e6eaf0
+        }
+        *{box-sizing:border-box}
+        body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:var(--bg);color:var(--text)}
+        header{background-color:var(--brand);padding:1.25rem 1rem;color:#fff;text-align:center}
+        header h1{margin:0 0 .25rem 0;font-size:1.85rem;letter-spacing:.2px}
+        header h2{margin:.25rem 0 0 0;font-weight:500;font-size:1rem;opacity:.95}
+        nav{background-color:#34495e;padding:.5rem}
+        nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap}
+        nav li{margin:0 15px}
+        nav a{color:#fff;text-decoration:none;font-weight:700;transition:color .25s ease}
+        nav a:hover{color:var(--brand-2)}
+        main{padding:2rem 1rem;max-width:1100px;margin:0 auto}
+        #program h2{margin-top:0;text-align:center;font-size:1.75rem}
+
+        /* Keynotes */
+        .keynotes-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem;align-items:start}
+        .keynote-card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;display:grid;grid-template-columns:120px 1fr;gap:1rem}
+        .photo{width:120px;height:120px;border-radius:10px;object-fit:cover;border:1px solid var(--border);background:#fff}
+        .speaker-name{margin:.1rem 0 0 0;font-size:1.25rem}
+        .speaker-affil{margin:.15rem 0 .5rem 0;color:var(--muted);font-size:.95rem}
+        .talk-title{margin:.25rem 0 .5rem 0;font-size:1.15rem;font-weight:700}
+        .subgrid{display:grid;grid-template-columns:1fr;gap:.5rem}
+        .meta{display:flex;gap:.75rem;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+        .pill{background:#eaf7f3;border:1px solid #d6eee5;color:#1b6f5b;border-radius:999px;padding:.15rem .55rem}
+        details{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.75rem}
+        summary{cursor:pointer;font-weight:700}
+        .abstract,.bio{line-height:1.55}
+        .links{margin-top:.35rem}
+        .links a{color:#3498db;text-decoration:none}
+        .links a:hover{text-decoration:underline}
+        @media (max-width: 720px){
+            .keynote-card{grid-template-columns:1fr}
+            .photo{width:100%;height:220px}
+        }
+        footer{background-color:var(--brand);color:#fff;padding:1rem 0;text-align:center;margin-top:2rem}
+    </style>
+</head>
+<body>
+<header>
+    <h1>RETRAI Workshop</h1>
+    <h2><b>R</b>equirement <b>E</b>ngineering for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
+</header>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#call-for-papers">Call for Papers</a></li>
+        <li><a href="program.html">Program</a></li>
+        <li><a href="keynote.html">Keynotes</a></li>
+        <li><a href="panel.html">Panel</a></li>
+        <li><a href="index.html#organizers">Organizers</a></li>
+        <li><a href="index.html#venue">Venue</a></li>
+    </ul>
+</nav>
+<main>
+    <section id="program" aria-labelledby="keynotes-title">
+        <h2 id="keynotes-title">Keynotes</h2>
+        <div class="keynotes-grid">
+
+            <!-- Keynote 1 -->
+            <article class="keynote-card" itemscope itemtype="https://schema.org/Event">
+                <img class="photo" src="REEM.jpg" alt="Portrait of Keynote Speaker 1" itemprop="image" />
+                <div class="subgrid">
+                    <div>
+                        <h3 class="speaker-name" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">Reem Ayad</span>
+                        </h3>
+                        <div class="speaker-affil">Department of Psychology, University of Toronto</div>
+                    </div>
+                    <div>
+                        <div class="talk-title" itemprop="name"> The AI social contract: How human-AI relationships shape moral expectations </div>
+                        <details open>
+                            <summary>Abstract</summary>
+                            <p class="abstract" itemprop="description">
+                                We excuse mistakes from friends that we’d condemn from strangers. What about the mistakes of AI friends? In this talk, I examine how the social embeddedness of AI agents—whether as impersonal machines or collaborators and companions—shapes people’s moral expectations and judgments of AI behavior in medical, political, and social contexts. By mapping the social contours of human-AI moral judgment, we can better understand how human-AI trust develops and, importantly, how we behave when that trust is broken.
+
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Bio</summary>
+                            <p class="bio" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                                <span itemprop="description">Reem Ayad is a PhD candidate at the University of Toronto and a SSHRC Doctoral Fellow. Her research examines the moral consequences of human-AI relationships with the goal of codifying unique human-AI socio-relational norms. Reem holds a BSc from the University of Toronto, an LLB from University College London, and is a Graduate Affiliate at the Schwartz Reisman Institute for Technology and Society.</span>
+                            </p>
+                        </details>
+
+                    </div>
+                </div>
+            </article>
+
+            <!-- Keynote 2 -->
+            <article class="keynote-card" itemscope itemtype="https://schema.org/Event">
+                <img class="photo" src="DIDAR.jpg" alt="Portrait of Keynote Speaker 2" itemprop="image" />
+                <div class="subgrid">
+                    <div>
+                        <h3 class="speaker-name" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">Didar Zowghi</span>
+                        </h3>
+                        <div class="speaker-affil">CSIRO’s Data61, Australia’s National Science Agency</div>
+                    </div>
+                    <div>
+                        <div class="talk-title" itemprop="name">On the Role of Transparency in Building Inclusive and Trustworthy AI Systems</div>
+                        <details open>
+                            <summary>Abstract</summary>
+                            <p class="abstract" itemprop="description">
+                                Transparency is widely acknowledged as a foundation of responsible, inclusive, and trustworthy artificial intelligence (AI). This talk examines how transparency requirements can be articulated and operationalised throughout the AI system lifecycle. As a case study, I draw on the Australian Government’s mandate requiring public agencies to publish AI transparency statements. Based on an analysis of 100 such statements, I highlight the breadth and depth of interpretations and reveal key patterns and gaps in how transparency is currently understood and communicated. I argue that core practices from requirements engineering, especially continuous stakeholder engagement, can provide a structured foundation for embedding transparency and inclusion into the design, development, and governance of AI systems. This approach moves beyond superficial compliance and toward transparency as a socio-technical commitment grounded in shared understanding and traceable justification.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Bio</summary>
+                            <p class="bio" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                                <span itemprop="description">Professor Didar Zowghi is Senior Principal Research Scientist at CSIRO’s Data61, leading research on Diversity and Inclusion in AI and Requirements Engineering for Responsible AI. She is also Emeritus Professor at the University of Technology Sydney and Conjoint Professor at the University of New South Wales. At UTS, she held several leadership roles over 22 years, including Deputy Dean of Graduate Research and Head of Software Engineering, after earlier work in the UK and Australian software industry. Her 25+ years of research focus on requirements engineering, evidence-based methods, and human-centred design, with extensive supervision and international collaborations. She has served the IEEE RE community in key leadership roles, receiving its Lifetime Service Award in 2019, and was named IEEE Computer Society Distinguished Educator in 2022. She has published 250+ articles with 140 collaborators from 40+ countries, and regularly delivers keynotes on software engineering, Responsible AI, and diversity and inclusion.</span>
+                            </p>
+                        </details>
+                    
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+</footer>
+</body>
+</html>
