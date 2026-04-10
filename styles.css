@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg:      #F1F0E9;
+    --text:    #2c3e50;
+    --muted:   #5d6d7e;
+    --brand:   #41644A;
+    --brand-2: #E9762B;
+    --card:    #E9762B;
+    --border:  #e6eaf0;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow:    0 2px 12px rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.05);
+    --radius:    8px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── Prose paragraphs ── */
+p {
+    margin: 0 0 1rem 0;
+    text-align: left;
+}
+
+header p,
+footer p,
+nav p {
+    text-align: center;
+}
+
+/* ── List spacing ── */
+ul, ol {
+    padding-left: 1.4rem;
+    margin: 0 0 1rem 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+
+header {
+    background-color: var(--brand);
+    padding: 3rem 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 0.6rem 0;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+header h1::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin: 0.7rem auto 0;
+}
+
+header h2 {
+    margin: 0.6rem 0 0 0;
+    font-weight: 400;
+    font-size: 0.95rem;
+    opacity: 0.82;
+    letter-spacing: 0.25px;
+}
+
+
+nav {
+    background-color: #2d4433;
+    padding: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 1.05rem 1.15rem;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+
+nav a:hover,
+nav a[aria-current="page"] {
+    color: #fff;
+    border-bottom-color: var(--brand-2);
+}
+
+
+main {
+    padding: 3.5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+@media (max-width: 640px) {
+    main { padding: 2rem 1rem; }
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+}
+
+
+section > h2 {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.75rem;
+}
+
+
+footer {
+    background-color: var(--brand);
+    color: rgba(255,255,255,0.68);
+    padding: 1.75rem 0;
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 0.825rem;
+    letter-spacing: 0.04em;
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+footer p {
+    margin: 0;
+}
+

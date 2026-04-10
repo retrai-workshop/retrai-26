@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repository - RETRAI 2025</title>
+<link rel="stylesheet" href="styles.css">
+<script src="data.js"></script>
+<style>
+  header.repo-hero {
+    background: var(--brand);
+    padding: 2.75rem 2rem 2.25rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  header.repo-hero h1 {
+    margin: 0 0 0.35rem;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  header.repo-hero h1::after { display: none; }
+
+  header.repo-hero p {
+    margin: 0;
+    font-size: 0.92rem;
+    opacity: 0.78;
+    letter-spacing: 0.02em;
+  }
+
+
+  .tab-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: #fff;
+    color: var(--muted);
+    border: 2px solid var(--border);
+    border-radius: 40px;
+    padding: 0.55rem 1.4rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .tab-btn.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+    box-shadow: 0 4px 16px rgba(65,100,74,0.28);
+  }
+
+  .tab-btn.active.orange {
+    background: var(--brand);
+    border-color: var(--brand);
+    box-shadow: 0 4px 16px rgba(233,118,43,0.28);
+  }
+
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--brand-2);
+  }
+
+
+  .sub-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sub-heading .badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    background: var(--brand);
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.15rem 0.55rem;
+    letter-spacing: 0.05em;
+  }
+
+  .sub-heading .badge.orange { background: var(--brand-2); }
+  .sub-heading .badge.teal   { background: var(--muted); }
+
+  .tab-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0 0 1.75rem;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border-left: 3px solid var(--brand);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    line-height: 1.6;
+    max-width: none;
+  }
+
+
+  .domain-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filter-pill {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 20px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  .filter-pill:hover { border-color: var(--brand); color: var(--brand); }
+  .filter-pill.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+
+  .rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .rules-table thead tr { background: var(--brand); color: #fff; }
+
+  .rules-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .rules-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+  }
+
+  .rules-table tbody tr:last-child { border-bottom: none; }
+  .rules-table tbody tr:hover { background: #f8faf8; }
+
+  .rules-table td {
+    padding: 0.9rem 1rem;
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  .rules-table td.rule-text {
+    font-size: 0.875rem;
+    max-width: 560px;
+  }
+
+
+  .domain-chip {
+    display: inline-block;
+    background: #edf7f0;
+    color: #2d7a4a;
+    border: 1px solid #b8dfc5;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+  }
+
+
+  .paper-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .paper-badge {
+    display: block;
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  .paper-badge:hover .paper-badge-title {
+    text-decoration: underline;
+  }
+
+  .paper-badge-title {
+    display: block;
+    font-weight: 500;
+    font-size: 0.84rem;
+    color: var(--brand);
+  }
+
+  .paper-badge-authors {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--brand);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+
+  .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .stat-card:nth-child(2),
+  .stat-card:nth-child(3),
+  .stat-card:nth-child(4) { border-top-color: var(--brand); }
+
+  .stat-number {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--brand);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+
+  .wordcloud-wrap {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+  }
+
+  .wordcloud-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .wordcloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    min-height: 160px;
+  }
+
+  .wc-word {
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1.2;
+    transition: transform 0.15s, opacity 0.15s;
+    cursor: default;
+  }
+
+  .wc-word:hover { transform: scale(1.08); opacity: 0.8; }
+  .wc-word.pink  { color: #c0396b; }
+  .wc-word.blue  { color: #2980b9; }
+  .wc-word.dark  { color: #2c3e50; }
+
+
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .breakdown-item {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .breakdown-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .breakdown-info { flex: 1; }
+  .breakdown-name { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+  .breakdown-count { font-size: 0.75rem; color: var(--muted); }
+
+  .breakdown-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 0.35rem;
+    overflow: hidden;
+  }
+
+  .breakdown-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+
+  .papers-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.84rem;
+  }
+
+  .papers-table thead tr { background: #2d4433; color: #fff; }
+  .papers-table thead th {
+    padding: 0.8rem 0.9rem;
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .papers-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+  }
+
+  .papers-table tbody tr:last-child { border-bottom: none; }
+  .papers-table tbody tr:hover { background: #f8faf8; }
+
+  .papers-table td {
+    padding: 0.75rem 0.9rem;
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.45;
+  }
+
+  .paper-count-cell {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--brand);
+    white-space: nowrap;
+  }
+
+  .paper-id-cell { font-weight: 800; color: var(--brand); font-size: 0.78rem; white-space: nowrap; }
+  .paper-title-cell { font-weight: 500; }
+  .paper-authors { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+  .tag-chip {
+    display: inline-block;
+    background: #f0f4f0;
+    color: var(--brand);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+  }
+
+
+  .concerns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .concern-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--brand);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .concern-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .concern-name { font-weight: 700; font-size: 0.9rem; color: var(--brand); margin-bottom: 0.4rem; }
+  .concern-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.6rem; }
+
+
+  .stats-sub-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .stats-sub-btn {
+    background: #fff;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .stats-sub-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .stats-sub-btn.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+  }
+
+  .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+
+  .loading { text-align: center; padding: 4rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+  .loading::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    margin: 1rem auto 0;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+
+  @media (max-width: 640px) {
+    .rules-table thead th:nth-child(3),
+    .rules-table td:nth-child(3) { display: none; }
+    .tab-btn { font-size: 0.72rem; padding: 0.45rem 1rem; }
+    .repo-hero h2 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="repo-hero">
+  <h1>RETRAI Repository</h1>
+  <p>Workshop on Requirements Engineering for Trustworthy AI</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#call-for-papers">Call for Papers</a></li>
+    <li><a href="index.html#organizers">Organizers</a></li>
+    <li><a href="index.html#venue">Venue</a></li>
+    <li><a href="repository.html" aria-current="page">Repository</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section id="repository">
+
+
+    <div class="tab-bar">
+      <button class="tab-btn active"  data-tab="universal">Universal</button>
+      <button class="tab-btn"         data-tab="domain">Domain-Specific</button>
+      <button class="tab-btn"         data-tab="custom">Customizable</button>
+      <button class="tab-btn orange"  data-tab="stats">Stats &amp; Papers</button>
+    </div>
+
+    <div id="tab-content">
+      <div class="loading" id="loading-indicator">Loading repository data…</div>
+    </div>
+
+  </section>
+
+  <section id="stats-section">
+    <h2>Stats &amp; Papers</h2>
+    <div id="stats-content"></div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+</footer>
+
+<script>
+let activeTab = 'universal';
+let activeDomainFilter = 'all';
+
+function loadData() {
+  document.getElementById('loading-indicator').remove();
+  renderTab(activeTab);
+  renderStats(document.getElementById('stats-content'));
+  renderStatsBreakdown('domain');
+  wireStatsSubTabs();
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.classList.remove('orange'); });
+    btn.classList.add('active');
+    if (btn.dataset.tab === 'stats') {
+      btn.classList.add('orange');
+      document.getElementById('stats-section').scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    activeTab = btn.dataset.tab;
+    activeDomainFilter = 'all';
+    renderTab(activeTab);
+  });
+});
+
+function renderTab(tab) {
+  const container = document.getElementById('tab-content');
+  if (tab === 'universal')  renderUniversal(container);
+  if (tab === 'domain')     renderDomain(container);
+  if (tab === 'custom')     renderCustom(container);
+}
+
+function paperBadges(papers) {
+  return `<div class="paper-badges">${papers.map(p => {
+    const info = getPaperInfo(p);
+    const authorsDisplay = info.authors.length === 1
+      ? info.authors[0]
+      : info.authors.length <= 3
+        ? info.authors.join(', ')
+        : info.authors[0] + ' et al.';
+    const inner = `<span class="paper-badge-title">${escHtml(info.title)}</span>`
+                + `<span class="paper-badge-authors">${escHtml(authorsDisplay)}</span>`;
+    if (info.pdf) {
+      return `<a class="paper-badge" href="${escHtml(info.pdf)}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
+    }
+    return `<span class="paper-badge">${inner}</span>`;
+  }).join('')}</div>`;
+}
+
+function getPaperInfo(id) {
+  const fallback = { title: id, authors: [], pdf: null };
+  if (!DATA) return fallback;
+  const p = DATA.accepted_papers.find(p => p.id === id);
+  if (!p) return fallback;
+  return { title: p.title, authors: p.authors || [], pdf: p.pdf || null };
+}
+
+function sectionLabel(text) {
+  return `<div class="section-label">${text}</div>`;
+}
+
+function renderUniversal(container) {
+  const req = DATA.requirements_for_trustworthy_ai.universal;
+  container.innerHTML = `
+    ${sectionLabel('Requirements for Trustworthy AI')}
+    <h3 class="sub-heading">Universal Requirements <span class="badge">${req.length} rules</span></h3>
+    <p class="tab-desc">
+      Rules applicable to <strong>any AI system</strong>, regardless of domain or deployment context.
+      These rules set the baseline for trustworthy AI across the board.
+    </p>
+    <table class="rules-table">
+      <thead><tr>
+        <th style="width:68%">Rule (SHALL / MUST)</th>
+        <th style="width:4%;text-align:center">#</th>
+        <th>Paper(s)</th>
+      </tr></thead>
+      <tbody>
+        ${req.map(r => `
+          <tr>
+            <td class="rule-text">${escHtml(r.rule)}</td>
+            <td class="paper-count-cell">${r.papers.length}</td>
+            <td>${paperBadges(r.papers)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderDomain(container) {
+  const req = DATA.requirements_for_trustworthy_ai.domain_specific;
+  const domains = ['all', ...new Set(req.map(r => r.domain))];
+  const filtered = activeDomainFilter === 'all' ? req : req.filter(r => r.domain === activeDomainFilter);
+
+  container.innerHTML = `
+    ${sectionLabel('Requirements for Trustworthy AI')}
+    <h3 class="sub-heading">Domain-Specific Requirements <span class="badge">${req.length} rules</span></h3>
+    <p class="tab-desc">
+      Rules that apply within a <strong>specific application domain</strong>.
+      Use the filters below to focus on a particular area.
+    </p>
+    <div class="domain-filters" id="domain-filters">
+      ${domains.map(d => `
+        <button class="filter-pill${d === activeDomainFilter ? ' active' : ''}" data-domain="${d}">
+          ${d === 'all' ? 'All Domains' : d}
+        </button>`).join('')}
+    </div>
+    <table class="rules-table">
+      <thead><tr>
+        <th style="width:53%">Rule (SHALL / MUST)</th>
+        <th style="width:16%">Domain</th>
+        <th style="width:4%;text-align:center">#</th>
+        <th>Paper(s)</th>
+      </tr></thead>
+      <tbody id="domain-tbody">
+        ${filtered.length === 0 ? `<tr><td colspan="4" class="empty-state">No rules for this domain.</td></tr>` :
+          filtered.map(r => `
+            <tr>
+              <td class="rule-text">${escHtml(r.rule)}</td>
+              <td><span class="domain-chip">${escHtml(r.domain)}</span></td>
+              <td class="paper-count-cell">${r.papers.length}</td>
+              <td>${paperBadges(r.papers)}</td>
+            </tr>`).join('')}
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading" style="margin-top:2.5rem">Domain-Specific Challenges
+      <span class="badge orange">${DATA.challenges_for_trustworthy_ai.domain_specific.length} challenges</span>
+    </h3>
+    <table class="rules-table">
+      <thead><tr>
+        <th style="width:53%">Challenge</th>
+        <th style="width:16%">Domain</th>
+        <th style="width:4%;text-align:center">#</th>
+        <th>Paper(s)</th>
+      </tr></thead>
+      <tbody>
+        ${DATA.challenges_for_trustworthy_ai.domain_specific.map(r => `
+          <tr>
+            <td class="rule-text">${escHtml(r.challenge)}</td>
+            <td><span class="domain-chip">${escHtml(r.domain)}</span></td>
+            <td class="paper-count-cell">${r.papers.length}</td>
+            <td>${paperBadges(r.papers)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  container.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      activeDomainFilter = pill.dataset.domain;
+      renderDomain(container);
+    });
+  });
+}
+
+function renderCustom(container) {
+  const req  = DATA.requirements_for_trustworthy_ai.customizable;
+  const chal = DATA.challenges_for_trustworthy_ai.customized;
+
+  container.innerHTML = `
+    ${sectionLabel('Requirements for Trustworthy AI')}
+    <h3 class="sub-heading">Customizable Requirements <span class="badge">${req.length} rules</span></h3>
+    <p class="tab-desc">
+      Rules configurable to an <strong>individual user's profile</strong>, preferences,
+      accessibility needs, or deployment context. These adapt to who is using the system
+      and how.
+    </p>
+    <table class="rules-table">
+      <thead><tr>
+        <th style="width:68%">Rule (SHALL / MUST)</th>
+        <th style="width:4%;text-align:center">#</th>
+        <th>Paper(s)</th>
+      </tr></thead>
+      <tbody>
+        ${req.map(r => `
+          <tr>
+            <td class="rule-text">${escHtml(r.rule)}</td>
+            <td class="paper-count-cell">${r.papers.length}</td>
+            <td>${paperBadges(r.papers)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading" style="margin-top:2.5rem">Customized Challenges
+      <span class="badge orange">${chal.length} challenges</span>
+    </h3>
+    <table class="rules-table">
+      <thead><tr>
+        <th style="width:68%">Challenge</th>
+        <th style="width:4%;text-align:center">#</th>
+        <th>Paper(s)</th>
+      </tr></thead>
+      <tbody>
+        ${chal.map(r => `
+          <tr>
+            <td class="rule-text">${escHtml(r.challenge)}</td>
+            <td class="paper-count-cell">${r.papers.length}</td>
+            <td>${paperBadges(r.papers)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading" style="margin-top:2.5rem">Trustworthy AI Concerns
+      <span class="badge teal">${DATA.trustworthy_ai_concerns.length} concerns</span>
+    </h3>
+    <p class="tab-desc">Cross-cutting concerns mapped to EU AI HLEG and ISO/IEC 42001 pillars.</p>
+    <div class="concerns-grid">
+      ${DATA.trustworthy_ai_concerns.map(c => `
+        <div class="concern-card">
+          <div class="concern-name">${escHtml(c.concern)}</div>
+          <div class="concern-desc">${escHtml(c.description)}</div>
+          ${paperBadges(c.papers)}
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderStats(container) {
+  const domainCounts = {};
+  DATA.accepted_papers.forEach(p => {
+    const d = p.domain.split('/')[0].trim();
+    domainCounts[d] = (domainCounts[d] || 0) + 1;
+  });
+  const maxCount = Math.max(...Object.values(domainCounts));
+  const dotColors = ['#41644A','#E9762B','#2980b9','#8e44ad','#c0392b','#16a085','#d35400','#27ae60'];
+
+  const words = [
+    { text:'safety',        size:3.2, cls:'pink'  },
+    { text:'expectations',  size:2.6, cls:'pink'  },
+    { text:'transparent',   size:2.4, cls:'pink'  },
+    { text:'reliable',      size:2.3, cls:'pink'  },
+    { text:'data',          size:2.2, cls:'pink'  },
+    { text:'technology',    size:2.1, cls:'pink'  },
+    { text:'safe',          size:2.0, cls:'pink'  },
+    { text:'requirements',  size:1.5, cls:'blue'  },
+    { text:'ethics',        size:1.3, cls:'dark'  },
+    { text:'fairness',      size:1.3, cls:'dark'  },
+    { text:'transparency',  size:1.3, cls:'dark'  },
+    { text:'accountability',size:1.3, cls:'blue'  },
+    { text:'agency',        size:1.1, cls:'blue'  },
+    { text:'values',        size:1.0, cls:'dark'  },
+    { text:'rights',        size:1.0, cls:'dark'  },
+    { text:'certified',     size:1.0, cls:'blue'  },
+    { text:'rely',          size:0.9, cls:'dark'  },
+    { text:'operators',     size:0.9, cls:'blue'  },
+    { text:'ethical',       size:0.9, cls:'dark'  },
+    { text:'accessible',    size:0.9, cls:'dark'  },
+    { text:'responsibility',size:0.9, cls:'blue'  },
+    { text:'regulators',    size:0.85,cls:'dark'  },
+    { text:'safeguards',    size:0.85,cls:'blue'  },
+    { text:'reliably',      size:0.85,cls:'dark'  },
+    { text:'performance',   size:0.85,cls:'dark'  },
+    { text:'safety-critical',size:0.82,cls:'dark' },
+    { text:'respects',      size:0.8, cls:'dark'  },
+    { text:'control',       size:0.8, cls:'blue'  },
+    { text:'high-quality',  size:0.8, cls:'dark'  },
+    { text:'confidence',    size:0.8, cls:'dark'  },
+    { text:'society',       size:0.78,cls:'blue'  },
+    { text:'autonomous',    size:0.78,cls:'dark'  },
+    { text:'accuracy',      size:0.78,cls:'dark'  },
+  ];
+
+  container.innerHTML = `
+    ${sectionLabel('Workshop Statistics')}
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">17</div>
+        <div class="stat-label">Submissions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">13</div>
+        <div class="stat-label">In Workshop</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">59</div>
+        <div class="stat-label">Registrations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">14</div>
+        <div class="stat-label">In Repository</div>
+      </div>
+    </div>
+<!-- 
+    <div class="wordcloud-wrap">
+      <div class="wordcloud-title">Attendee responses — What does trustworthy AI mean to you?</div>
+      <div class="wordcloud">
+        ${words.map(w => `
+          <span class="wc-word ${w.cls}" style="font-size:${w.size}rem">
+            ${escHtml(w.text)}
+          </span>`).join('')}
+      </div>
+    </div> -->
+
+    <div class="stats-sub-tabs">
+      <button class="stats-sub-btn active" data-view="domain">Papers by Domain <span class="badge">${DATA.accepted_papers.length}</span></button>
+      <button class="stats-sub-btn" data-view="category">Rules by Category</button>
+      <button class="stats-sub-btn" data-view="year">Rules by Year</button>
+    </div>
+
+    <div id="stats-breakdown"></div>
+
+    <h3 class="sub-heading" style="margin-top:2.5rem">Accepted Papers — RETRAI 2025</h3>
+    <table class="papers-table">
+      <thead><tr>
+        <th style="width:4%">#</th>
+        <th style="width:40%">Title</th>
+        <th style="width:22%">Authors</th>
+        <th style="width:6%">Year</th>
+        <th style="width:16%">Domain</th>
+        <th style="width:12%">Field</th>
+      </tr></thead>
+      <tbody>
+        ${DATA.accepted_papers.map(p => `
+          <tr>
+            <td class="paper-id-cell">${p.id}</td>
+            <td class="paper-title-cell">${p.pdf
+              ? `<a href="${escHtml(p.pdf)}" target="_blank" rel="noopener noreferrer" style="color:var(--brand);text-decoration:none;font-weight:500;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${escHtml(p.title)}</a>`
+              : escHtml(p.title)
+            }</td>
+            <td class="paper-authors">${escHtml(p.authors.join(', '))}</td>
+            <td style="text-align:center;color:var(--muted);font-size:0.8rem">${p.year}</td>
+            <td><span class="tag-chip">${escHtml(p.domain.split('/')[0].trim())}</span></td>
+            <td style="font-size:0.78rem;color:var(--muted)">${escHtml(p.field.split('/')[0].trim())}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderStatsBreakdown(view) {
+  const el = document.getElementById('stats-breakdown');
+  if (!el) return;
+
+  const dotColors = ['#41644A','#E9762B','#2980b9','#8e44ad','#c0392b','#16a085','#d35400','#27ae60'];
+
+  if (view === 'domain') {
+    const domainCounts = {};
+    DATA.accepted_papers.forEach(p => {
+      const d = p.domain.split('/')[0].trim();
+      domainCounts[d] = (domainCounts[d] || 0) + 1;
+    });
+    const maxCount = Math.max(...Object.values(domainCounts));
+    el.innerHTML = `<div class="breakdown-grid">
+      ${Object.entries(domainCounts).sort((a,b) => b[1]-a[1]).map(([d, n], i) => `
+        <div class="breakdown-item">
+          <div class="breakdown-dot" style="background:${dotColors[i % dotColors.length]}"></div>
+          <div class="breakdown-info">
+            <div class="breakdown-name">${escHtml(d)}</div>
+            <div class="breakdown-count">${n} paper${n > 1 ? 's' : ''}</div>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:${(n/maxCount)*100}%;background:${dotColors[i % dotColors.length]}"></div></div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }
+
+  if (view === 'category') {
+    const cats = {
+      'Universal':      DATA.requirements_for_trustworthy_ai.universal.length,
+      'Domain-Specific':DATA.requirements_for_trustworthy_ai.domain_specific.length,
+      'Customizable':   DATA.requirements_for_trustworthy_ai.customizable.length,
+    };
+    const maxCount = Math.max(...Object.values(cats));
+    el.innerHTML = `<div class="breakdown-grid">
+      ${Object.entries(cats).map(([cat, n], i) => `
+        <div class="breakdown-item">
+          <div class="breakdown-dot" style="background:${dotColors[i % dotColors.length]}"></div>
+          <div class="breakdown-info">
+            <div class="breakdown-name">${escHtml(cat)}</div>
+            <div class="breakdown-count">${n} rule${n > 1 ? 's' : ''}</div>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:${(n/maxCount)*100}%;background:${dotColors[i % dotColors.length]}"></div></div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }
+
+  if (view === 'year') {
+    const allRules = [
+      ...DATA.requirements_for_trustworthy_ai.universal,
+      ...DATA.requirements_for_trustworthy_ai.domain_specific,
+      ...DATA.requirements_for_trustworthy_ai.customizable,
+    ];
+    const yearCounts = {};
+    allRules.forEach(r => {
+      r.papers.forEach(pid => {
+        const paper = DATA.accepted_papers.find(p => p.id === pid);
+        if (paper) {
+          const y = String(paper.year);
+          yearCounts[y] = (yearCounts[y] || new Set());
+          yearCounts[y].add(r.rule);
+        }
+      });
+    });
+    const yearTotals = Object.fromEntries(Object.entries(yearCounts).map(([y, s]) => [y, s.size]));
+    const maxCount = Math.max(...Object.values(yearTotals));
+    el.innerHTML = `<div class="breakdown-grid">
+      ${Object.entries(yearTotals).sort().map(([y, n], i) => `
+        <div class="breakdown-item">
+          <div class="breakdown-dot" style="background:${dotColors[i % dotColors.length]}"></div>
+          <div class="breakdown-info">
+            <div class="breakdown-name">${escHtml(y)}</div>
+            <div class="breakdown-count">${n} rule${n > 1 ? 's' : ''}</div>
+            <div class="breakdown-bar"><div class="breakdown-fill" style="width:${(n/maxCount)*100}%;background:${dotColors[i % dotColors.length]}"></div></div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }
+
+}
+
+function wireStatsSubTabs() {
+  document.querySelectorAll('.stats-sub-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.stats-sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderStatsBreakdown(btn.dataset.view);
+    };
+  });
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+loadData();
+</script>
+</body>
+</html>
