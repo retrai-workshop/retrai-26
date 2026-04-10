@@ -4,44 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keynotes - RETRAI 2025</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root{
-            --bg:#ffffff;--text:#222;--muted:#5f6b7a;--brand:#2c3e50;--brand-2:#1abc9c;--card:#f7f9fc;--border:#e6eaf0
+        /* ── Keynotes page ── */
+        #program h2 {
+            text-align: center;
+            font-size: 1.55rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 2.5rem;
         }
-        *{box-sizing:border-box}
-        body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:var(--bg);color:var(--text)}
-        header{background-color:var(--brand);padding:1.25rem 1rem;color:#fff;text-align:center}
-        header h1{margin:0 0 .25rem 0;font-size:1.85rem;letter-spacing:.2px}
-        header h2{margin:.25rem 0 0 0;font-weight:500;font-size:1rem;opacity:.95}
-        nav{background-color:#34495e;padding:.5rem}
-        nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap}
-        nav li{margin:0 15px}
-        nav a{color:#fff;text-decoration:none;font-weight:700;transition:color .25s ease}
-        nav a:hover{color:var(--brand-2)}
-        main{padding:2rem 1rem;max-width:1100px;margin:0 auto}
-        #program h2{margin-top:0;text-align:center;font-size:1.75rem}
 
-        /* Keynotes */
-        .keynotes-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem;align-items:start}
-        .keynote-card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;display:grid;grid-template-columns:120px 1fr;gap:1rem}
-        .photo{width:120px;height:120px;border-radius:10px;object-fit:cover;border:1px solid var(--border);background:#fff}
-        .speaker-name{margin:.1rem 0 0 0;font-size:1.25rem}
-        .speaker-affil{margin:.15rem 0 .5rem 0;color:var(--muted);font-size:.95rem}
-        .talk-title{margin:.25rem 0 .5rem 0;font-size:1.15rem;font-weight:700}
-        .subgrid{display:grid;grid-template-columns:1fr;gap:.5rem}
-        .meta{display:flex;gap:.75rem;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
-        .pill{background:#eaf7f3;border:1px solid #d6eee5;color:#1b6f5b;border-radius:999px;padding:.15rem .55rem}
-        details{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.75rem}
-        summary{cursor:pointer;font-weight:700}
-        .abstract,.bio{line-height:1.55}
-        .links{margin-top:.35rem}
-        .links a{color:#3498db;text-decoration:none}
-        .links a:hover{text-decoration:underline}
-        @media (max-width: 720px){
-            .keynote-card{grid-template-columns:1fr}
-            .photo{width:100%;height:220px}
+        .keynotes-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            align-items: start;
         }
-        footer{background-color:var(--brand);color:#fff;padding:1rem 0;text-align:center;margin-top:2rem}
+
+        .keynote-card {
+            grid-column: span 12;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .photo {
+            width: 130px;
+            height: 130px;
+            border-radius: var(--radius);
+            object-fit: cover;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .speaker-name {
+            margin: 0 0 0.2rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.1px;
+        }
+
+        .speaker-affil {
+            margin: 0 0 0.75rem 0;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .talk-title {
+            margin: 0 0 0.75rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: 0.01em;
+        }
+
+        .subgrid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .meta {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .pill {
+            background: #eaf7f3;
+            border: 1px solid #d6eee5;
+            color: #1b6f5b;
+            border-radius: 999px;
+            padding: 0.15rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        details {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.85rem 1rem;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        summary:hover { opacity: 1; }
+
+        .abstract, .bio {
+            line-height: 1.65;
+            font-size: 0.925rem;
+            margin: 0.65rem 0 0 0;
+        }
+
+        .links { margin-top: 0.5rem; }
+        .links a { color: #3498db; text-decoration: none; font-size: 0.9rem; }
+        .links a:hover { text-decoration: underline; }
+
+        @media (max-width: 720px) {
+            .keynote-card { grid-template-columns: 1fr; }
+            .photo { width: 100%; height: 220px; }
+        }
     </style>
 </head>
 <body>
@@ -54,10 +133,11 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#call-for-papers">Call for Papers</a></li>
         <li><a href="program.html">Program</a></li>
-        <li><a href="keynote.html">Keynotes</a></li>
+        <li><a href="keynote.html" aria-current="page">Keynotes</a></li>
         <li><a href="panel.html">Panel</a></li>
         <li><a href="index.html#organizers">Organizers</a></li>
         <li><a href="index.html#venue">Venue</a></li>
+        <li><a href="repository.html">Repository</a></li>
     </ul>
 </nav>
 <main>

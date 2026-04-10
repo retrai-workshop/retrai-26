@@ -4,72 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RETRAI 2026</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #2c3e50; }
-        header { background-color: #2c3e50; padding: 1em 0; color: white; text-align: center; }
-        nav { background-color: #34495e; padding: 0.5em; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
-        nav ul li { margin: 0 15px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: bold; transition: color 0.3s ease; }
-        nav ul li a:hover { color: #1abc9c; }
-        main { padding: 2em; max-width: 1000px; margin: 0 auto; }
-        h2, h3 { margin-top: 0; }
-        .schedule { display: grid; grid-template-columns: 120px 1fr; gap: 14px 20px; align-items: start; }
-        .slot-time { font-weight: bold; color: #34495e; text-align: right; padding-top: 2px; white-space: nowrap; }
-        .slot-detail { background: #f6f8fa; border: 1px solid #e1e5ea; border-radius: 8px; padding: 14px 16px; }
-        .badge { display: inline-block; font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #1abc9c; color: #fff; margin-left: 8px; vertical-align: middle; }
-        .papers { margin: 10px 0 0 0; padding-left: 18px; }
-        .papers li { margin: 6px 0; }
-        .note { font-size: 0.95em; color: #5d6d7e; margin-top: 8px; }
-        .block-title { font-weight: bold; font-size: 1.05em; }
-        footer { background-color: #2c3e50; color: white; padding: 1em 0; text-align: center; width: 100%; bottom: 0; }
-        @media (max-width: 700px) { .schedule { grid-template-columns: 1fr; } .slot-time { text-align: left; } }
-        .authors { margin-top: 6px; font-size: 0.9em; color: #2c3e50; padding-left: 12px; border-left: 3px solid #1abc9c; }
-        .author { margin: 2px 0; }
-        .author strong { font-weight: 600; color: #34495e; }
-        .affil { display: inline-block; margin-left: 4px; color: #5d6d7e; font-style: italic; }
+        section {
+            margin-bottom: 3.5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child { border-bottom: none; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        table td {
+            padding: 0.9rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.55;
+            text-align: left;
+        }
+
+        table td:first-child {
+            font-weight: 500;
+            width: 60%;
+        }
+
+        table td:last-child {
+            color: var(--muted);
+        }
+
+        table tbody tr:nth-child(even) td {
+            background: rgba(0,0,0,0.025);
+        }
+
+        table tr:last-child td { border-bottom: none; }
+
+        .centered-list {
+            columns: 2;
+            column-gap: 2rem;
+            padding-left: 1.2rem;
+            font-size: 0.925rem;
+            line-height: 1.8;
+        }
+
+        .centered-list li { break-inside: avoid; }
+
+        @media (max-width: 600px) {
+            .centered-list { columns: 1; }
+        }
+
+
+        .solo-card-wrap {
+            display: flex;
+            justify-content:flex-start;
+            margin-top: 1.5rem;
+        }
+
+        .solo-card-wrap .organizer-card {
+            width: 100%;
+            max-width: 300px;
+        }
+
+
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .organizer-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--brand);
+            border-radius: var(--radius);
+            padding: 1.5rem 1.6rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            text-align: left;
+        }
+
+        .organizer-name {
+            font-weight: 700;
+            font-size: 1.02rem;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .organizer-dept {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.45;
+            font-style: italic;
+            margin-bottom: 0.25rem;
+        }
+
+        .organizer-inst {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--brand);
+            letter-spacing: 0.01em;
+            margin-top: auto;
+        }
+
+        .organizer-email {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            word-break: break-all;
+        }
+
+        .organizer-email:hover {
+            color: var(--brand);
+            text-decoration: underline;
+        }
+
+        /* ── Content links — Option B: underline accent ── */
+        main a:not(.organizer-email) {
+            color: var(--brand);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--brand);
+            padding-bottom: 1px;
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+
+        main a:not(.organizer-email):hover {
+            color: var(--brand-2);
+            border-bottom-color: var(--brand-2);
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>RETRAI Workshop</h1>
         <h2><b>R</b>equirement <b>E</b>ngineering
-for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
+for <b>TR</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
     </header>
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
+            <li><a href="#home" aria-current="page">Home</a></li>
             <li><a href="#call-for-papers">Call for Papers</a></li>
             <!--<li><a href="program.html">Program</a></li>-->
             <!--<li><a href="keynote.html">Keynotes</a></li>-->
             <!--<li><a href="panel.html">Panel</a></li>-->
             <li><a href="#organizers">Organizers</a></li>
             <li><a href="#venue">Venue</a></li>
+            <li><a href="repository.html">Repository</a></li>
         </ul>
     </nav>
     <main>
         <section id="home">
             <h2>Welcome to RETRAI 2026</h2>
-            <p style="text-align: left;">AI-based systems are increasingly integrated into societal infrastructures, performing daily tasks alongside humans and influencing critical decision-making processes. However, unlike human actions, which may be governed by comprehensive legislation and enforcement procedures, AI systems are often built and deployed without clearly specifying the requirements necessary to ensure their responsible, and trustworthy operation. Clearly specifying requirements is important to ensuring that AI systems can be safely and responsibly integrated into society. Without well-defined requirements, it becomes difficult to assess whether such systems meet expectations for accountability, fairness, and ethical behavior. The complexity of this task is compounded by the need for multidisciplinary expertise, encompassing legal, ethical, and domain-specific knowledge.<b> R</b>equirement <b>E</b>ngineering for <b>Tr</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence proposed (<b>RETRAI</b>) workshop aims to bring together researchers and practitioners from these diverse fields to collaboratively establish a foundation for requirements engineering techniques specifically tailored for trustworthy AI-based systems. By fostering collaboration among multidisciplinary experts, this workshop will provide a platform to collect, refine, and share requirements that can be reused, extended, or adapted for future systems.</p>
+            <p>AI-based systems are increasingly integrated into societal infrastructures, performing daily tasks alongside humans and influencing critical decision-making processes. However, unlike human actions, which may be governed by comprehensive legislation and enforcement procedures, AI systems are often built and deployed without clearly specifying the requirements necessary to ensure their responsible, and trustworthy operation. Clearly specifying requirements is important to ensuring that AI systems can be safely and responsibly integrated into society. Without well-defined requirements, it becomes difficult to assess whether such systems meet expectations for accountability, fairness, and ethical behavior. The complexity of this task is compounded by the need for multidisciplinary expertise, encompassing legal, ethical, and domain-specific knowledge.<span style="border-bottom: 2px solid var(--brand); padding-bottom: 1px;"><b> R</b>equirement <b>E</b>ngineering for <b>Tr</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence proposed (<b>RETRAI</b>)</span> workshop aims to bring together researchers and practitioners from these diverse fields to collaboratively establish a foundation for requirements engineering techniques specifically tailored for trustworthy AI-based systems. By fostering collaboration among multidisciplinary experts, this workshop will provide a platform to collect, refine, and share requirements that can be reused, extended, or adapted for future systems.</p>
         </section>
         <section id="call-for-papers">
 			<h2>Call for Papers</h2>
-			 <p style="text-align: left;"><b>RETRAI 2026</b> is the second annual workshop aimed at addressing the specification, debugging, and compliance of requirements for trustworthy AI-based systems. As the interaction between these systems and humans continues to grow, the importance of embedding trustworthiness considerations into the design and development process becomes increasingly important. The workshop aims to discuss the challenges associated with developing trustworthy AI systems and highlights the necessity of engaging the requirements engineering community in tackling these issues. Researchers from disciplines such as philosophy, psychology, sociology, law, computer science, engineering, and related fields are encouraged to apply.
+			 <p><b>RETRAI 2026</b> is the second annual workshop aimed at addressing the specification, debugging, and compliance of requirements for trustworthy AI-based systems. As the interaction between these systems and humans continues to grow, the importance of embedding trustworthiness considerations into the design and development process becomes increasingly important. The workshop aims to discuss the challenges associated with developing trustworthy AI systems and highlights the necessity of engaging the requirements engineering community in tackling these issues. Researchers from disciplines such as philosophy, psychology, sociology, law, computer science, engineering, and related fields are encouraged to apply.
 </p>
             <h3>Topics of interest</h2>
-            <p style="text-align: left;">The topics of the workshop include, but are not restricted to:</p>
-            <ul style="margin-bottom: 15px; position: relative; padding-left: 20px; text-align: left;">
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Requirement elicitation for trustworthy AI systems</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Managing evolving requirements: adapting to legislative changes or societal progress</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Requirements for open capability AI-based systems (e.g., LLM-based ones)</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Prioritization of requirements for trustworthy AI</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Trade-offs in defining trustworthiness properties</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Challenges and need in gathering requirements for trustworthy AI</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Customizable, parameterizable, and universal ethical or empathetic requirements</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Social, legal, and cultural requirements for trustworthy AI</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Managing interactions between individual, group, and universal ethical requirements</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Requirement engineering approaches for trustworthy AI systems</li>
-				<li style="margin-bottom: 15px; position: relative; padding-left: 20px;"> Teaching Trustworthy AI</li>
+            <p>The topics of the workshop include, but are not restricted to:</p>
+            <ul>
+				<li> Requirement elicitation for trustworthy AI systems</li>
+				<li> Managing evolving requirements: adapting to legislative changes or societal progress</li>
+				<li> Requirements for open capability AI-based systems (e.g., LLM-based ones)</li>
+				<li> Prioritization of requirements for trustworthy AI</li>
+				<li> Trade-offs in defining trustworthiness properties</li>
+				<li> Challenges and need in gathering requirements for trustworthy AI</li>
+				<li> Customizable, parameterizable, and universal ethical or empathetic requirements</li>
+				<li> Social, legal, and cultural requirements for trustworthy AI</li>
+				<li> Managing interactions between individual, group, and universal ethical requirements</li>
+				<li> Requirement engineering approaches for trustworthy AI systems</li>
+				<li> Teaching Trustworthy AI</li>
             </ul>
         </section>
          <section id="dates">
@@ -126,30 +243,41 @@ English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTe
         </section>
         
         <section id="organizers">
-		<h2>Organizers</h2>
-		<div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-			<div style="text-align: center; max-width: 200px;">
-				<strong>Lina Marsso</strong><br>
-				Computer engineering and software engineering department,<br>  
-				Polytechnique Montréal<br>
-				<a href="mailto:lina.marsso@polymtl.ca" style="color: #3498db; text-decoration: none;">lina.marsso@polymtl.ca</a>
-			</div>
-			<div style="text-align: center; max-width: 200px;">
-				<strong>Isobel Standen</strong><br>
-				Philosophy department,<br> 
-				University of York, UK<br>
-				<a href="mailto:isobel.standen@york.ac.uk" style="color: #3498db; text-decoration: none;">isobel.standen@york.ac.uk</a>
-			</div>
-			<div style="text-align: center; max-width: 200px;">
-				<strong>Walid Maalej</strong><br>
-				Hasso Plattner Institut<br>
-				University of Potsdam<br>
-				<a href="mailto:walid.maalej@hpi.de" style="color: #3498db; text-decoration: none;">walid.maalej@hpi.de</a>
-			</div>
-		</div>
-		</section>
+            <h2>Organizers</h2>
+            <div class="organizers-grid">
+                <div class="organizer-card">
+                    <div class="organizer-name"><a href="https://lina.marsso.net/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Lina Marsso</a></div>
+                    <div class="organizer-dept">Computer engineering and software engineering department</div>
+                    <div class="organizer-inst">Polytechnique Montréal</div>
+                    <a href="mailto:lina.marsso@polymtl.ca" class="organizer-email">lina.marsso@polymtl.ca</a>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-name">Isobel Standen</div>
+                    <div class="organizer-dept">Philosophy department</div>
+                    <div class="organizer-inst">University of York, UK</div>
+                    <a href="mailto:isobel.standen@york.ac.uk" class="organizer-email">isobel.standen@york.ac.uk</a>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-name">Walid Maalej</div>
+                    <div class="organizer-dept">Hasso Plattner Institut</div>
+                    <div class="organizer-inst">University of Potsdam</div>
+                    <a href="mailto:walid.maalej@hpi.de" class="organizer-email">walid.maalej@hpi.de</a>
+                </div>
+            </div>
+        </section>
 
-		
+
+        <section id="web-chair">
+            <h2>Web &amp; Repository Chair</h2>
+            <div class="solo-card-wrap">
+                <div class="organizer-card">
+                    <div class="organizer-name"><a href="https://portfolio-ashen-six-49.vercel.app/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Paul Adubi</a></div>
+                    <div class="organizer-dept">Computer Engineering and Software Engineering Department</div>
+                    <div class="organizer-inst">Polytechnique Montreal</div>
+                    <a href="mailto:paul.adubi@etud.polymtl.ca" class="organizer-email">paul.adubi@etud.polymtl.ca</a>
+                </div>
+            </div>
+        </section>
        <section id="PC">
             <h2>Program Committee</h2>
             <ul class="centered-list">
@@ -166,15 +294,13 @@ English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTe
 				<li>Beatrice Melis, University of Pisa, Italy</li>
 				<li>Oscar Pastor, Universidad Politécnica de Valencia, Spain</li>
 				<li>Donatella Donati, University of L’Aquila, Italy</li>
-
-
             </ul>
             
     </section> 
 
         <section id="venue">
             <h2>Venue</h2>
-            <p style="text-align: left;">Co-located with the 34rd International Conference on Requierment Engineering (<a href="https://conf.researchr.org/home/RE-2026">RE'2026</a>), in Montreal, Canada</p>
+            <p>Co-located with the 34rd International Conference on Requierment Engineering (<a href="https://conf.researchr.org/home/RE-2026">RE'2026</a>), in Montreal, Canada</p>
         </section>
     </main>
     <footer>

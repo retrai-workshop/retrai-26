@@ -4,51 +4,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel - RETRAI 2025</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root{
-      --bg:#ffffff;--text:#222;--muted:#5f6b7a;--brand:#2c3e50;--brand-2:#1abc9c;--card:#f7f9fc;--border:#e6eaf0
-    }
-    *{box-sizing:border-box}
-    body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;background:var(--bg);color:var(--text)}
-    header{background-color:var(--brand);padding:1.25rem 1rem;color:#fff;text-align:center}
-    header h1{margin:0 0 .25rem 0;font-size:1.85rem;letter-spacing:.2px}
-    header h2{margin:.25rem 0 0 0;font-weight:500;font-size:1rem;opacity:.95}
-
-    nav{background-color:#34495e;padding:.5rem}
-    nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap}
-    nav li{margin:0 15px}
-    nav a{color:#fff;text-decoration:none;font-weight:700;transition:color .25s ease}
-    nav a:hover{color:var(--brand-2)}
-
-    main{padding:2rem 1rem;max-width:1100px;margin:0 auto}
-
-    /* Panel intro */
-    .panel-intro{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
-    .panel-intro h2{margin:.25rem 0 .5rem 0;font-size:1.75rem;text-align:center}
-    .panel-meta{display:flex;gap:.75rem;flex-wrap:wrap;color:var(--muted);font-size:.9rem;justify-content:center;margin:.25rem 0 .75rem}
-    .pill{background:#eaf7f3;border:1px solid #d6eee5;color:#1b6f5b;border-radius:999px;padding:.15rem .55rem}
-    .panel-desc{line-height:1.6;margin:0 auto;max-width:70ch}
-
-    /* Panelists */
-    .panelists{margin-top:2rem}
-    .panelists h3{font-size:1.5rem;margin:0 0 .75rem 0;text-align:center}
-
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.25rem;align-items:start}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;display:grid;grid-template-columns:140px 1fr;gap:1rem}
-    .photo{width:140px;height:140px;border-radius:12px;object-fit:cover;border:1px solid var(--border);background:#fff}
-    .name{margin:.1rem 0 0 0;font-size:1.25rem}
-    .affil{margin:.15rem 0 .5rem 0;color:var(--muted);font-size:.95rem}
-    .bio{line-height:1.55}
-    .links{margin-top:.35rem}
-    .links a{color:#3498db;text-decoration:none}
-    .links a:hover{text-decoration:underline}
-
-    @media (max-width: 720px){
-      .card{grid-template-columns:1fr}
-      .photo{width:100%;height:240px}
+    /* ── Panel page ── */
+    .panel-intro {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2rem 2.5rem;
+        box-shadow: var(--shadow-sm);
+        text-align: center;
     }
 
-    footer{background-color:var(--brand);color:#fff;padding:1rem 0;text-align:center;margin-top:2rem}
+    .panel-intro h2 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.45rem;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+    }
+
+    .panel-meta {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.85rem;
+        justify-content: center;
+        margin: 0.5rem 0 1rem;
+    }
+
+    .pill {
+        background: #eaf7f3;
+        border: 1px solid #d6eee5;
+        color: #1b6f5b;
+        border-radius: 999px;
+        padding: 0.15rem 0.65rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+    }
+
+    .panel-desc {
+        line-height: 1.7;
+        margin: 0 auto;
+        max-width: 68ch;
+        font-size: 0.95rem;
+        color: var(--muted);
+        text-align: left;
+    }
+
+    .panelists { margin-top: 3rem; }
+
+    .panelists h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 1.25rem 0;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        opacity: 0.65;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.25rem;
+        align-items: start;
+    }
+
+    .card {
+        grid-column: span 12;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 1.5rem;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .photo {
+        width: 140px;
+        height: 140px;
+        border-radius: var(--radius);
+        object-fit: cover;
+        border: 1px solid var(--border);
+        background: #fff;
+    }
+
+    .name {
+        margin: 0 0 0.2rem 0;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: -0.1px;
+    }
+
+    .affil {
+        margin: 0 0 0.75rem 0;
+        color: var(--muted);
+        font-size: 0.875rem;
+    }
+
+    .bio {
+        line-height: 1.65;
+        font-size: 0.925rem;
+    }
+
+    .links { margin-top: 0.5rem; }
+    .links a { color: #3498db; text-decoration: none; font-size: 0.9rem; }
+    .links a:hover { text-decoration: underline; }
+
+    @media (max-width: 720px) {
+      .card { grid-template-columns: 1fr; }
+      .photo { width: 100%; height: 240px; }
+    }
   </style>
 </head>
 <body>
@@ -66,6 +136,7 @@
       <li><a href="panel.html" aria-current="page">Panel</a></li>
       <li><a href="index.html#organizers">Organizers</a></li>
       <li><a href="index.html#venue">Venue</a></li>
+      <li><a href="repository.html">Repository</a></li>
     </ul>
   </nav>
 
