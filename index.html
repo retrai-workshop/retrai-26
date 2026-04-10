@@ -130,6 +130,19 @@
             text-decoration: underline;
         }
 
+        .ext-arrow {
+            display: inline-block;
+            font-size: 0.7em;
+            margin-left: 0.25em;
+            opacity: 0.45;
+            vertical-align: super;
+            transition: opacity 0.15s;
+        }
+
+        .organizer-name a:hover .ext-arrow {
+            opacity: 0.9;
+        }
+
         /* ── Content links — Option B: underline accent ── */
         main a:not(.organizer-email) {
             color: var(--brand);
@@ -246,19 +259,19 @@ English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTe
             <h2>Organizers</h2>
             <div class="organizers-grid">
                 <div class="organizer-card">
-                    <div class="organizer-name"><a href="https://lina.marsso.net/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Lina Marsso</a></div>
+                    <div class="organizer-name"><a href="https://lina.marsso.net/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Lina Marsso<span class="ext-arrow">↗</span></a></div>
                     <div class="organizer-dept">Computer engineering and software engineering department</div>
                     <div class="organizer-inst">Polytechnique Montréal</div>
                     <a href="mailto:lina.marsso@polymtl.ca" class="organizer-email">lina.marsso@polymtl.ca</a>
                 </div>
                 <div class="organizer-card">
-                    <div class="organizer-name">Isobel Standen</div>
+                    <div class="organizer-name"><a href="https://isobelstanden.github.io/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Isobel Standen<span class="ext-arrow">↗</span></a></div>
                     <div class="organizer-dept">Philosophy department</div>
                     <div class="organizer-inst">University of York, UK</div>
                     <a href="mailto:isobel.standen@york.ac.uk" class="organizer-email">isobel.standen@york.ac.uk</a>
                 </div>
                 <div class="organizer-card">
-                    <div class="organizer-name">Walid Maalej</div>
+                    <div class="organizer-name"><a href="https://maalejw.github.io/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Walid Maalej<span class="ext-arrow">↗</span></a></div>
                     <div class="organizer-dept">Hasso Plattner Institut</div>
                     <div class="organizer-inst">University of Potsdam</div>
                     <a href="mailto:walid.maalej@hpi.de" class="organizer-email">walid.maalej@hpi.de</a>
@@ -271,7 +284,7 @@ English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTe
             <h2>Web &amp; Repository Chair</h2>
             <div class="solo-card-wrap">
                 <div class="organizer-card">
-                    <div class="organizer-name"><a href="https://portfolio-ashen-six-49.vercel.app/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Paul Adubi</a></div>
+                    <div class="organizer-name"><a href="https://portfolio-ashen-six-49.vercel.app/" target="_blank" rel="noopener" style="color:inherit;border-bottom:none;font-weight:inherit;">Paul Adubi<span class="ext-arrow">↗</span></a></div>
                     <div class="organizer-dept">Computer Engineering and Software Engineering Department</div>
                     <div class="organizer-inst">Polytechnique Montreal</div>
                     <a href="mailto:paul.adubi@etud.polymtl.ca" class="organizer-email">paul.adubi@etud.polymtl.ca</a>
