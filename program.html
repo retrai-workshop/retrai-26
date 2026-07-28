@@ -5,109 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Program - RETRAI 2025</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* ── Program page – schedule & paper listing ── */
-        #program > h2 {
-            padding-bottom: 0.85rem;
-            border-bottom: 2px solid var(--border);
-            margin-bottom: 2.5rem;
-        }
-
-        .schedule {
-            display: grid;
-            grid-template-columns: 115px 1fr;
-            gap: 12px 28px;
-            align-items: start;
-        }
-
-        .slot-time {
-            font-weight: 600;
-            font-size: 0.78rem;
-            color: #34495e;
-            text-align: right;
-            padding-top: 18px;
-            white-space: nowrap;
-            letter-spacing: 0.02em;
-            opacity: 0.85;
-        }
-
-        .slot-detail {
-            background: #f6f8fa;
-            border: 1px solid #e1e5ea;
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .badge {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 9px;
-            border-radius: 999px;
-            background: #1abc9c;
-            color: #fff;
-            margin-left: 10px;
-            vertical-align: middle;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .papers {
-            margin: 12px 0 0 0;
-            padding-left: 18px;
-        }
-
-        .papers li {
-            margin: 8px 0;
-            line-height: 1.5;
-            font-size: 0.93rem;
-        }
-
-        .note {
-            font-size: 0.875rem;
-            color: #5d6d7e;
-            margin-top: 8px;
-            line-height: 1.55;
-        }
-
-        .block-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.01em;
-        }
-
-        .authors {
-            margin-top: 8px;
-            font-size: 0.83rem;
-            color: #2c3e50;
-            padding-left: 12px;
-            border-left: 2px solid #1abc9c;
-            line-height: 1.5;
-        }
-
-        .author { margin: 3px 0; }
-
-        .author strong {
-            font-weight: 600;
-            color: #34495e;
-        }
-
-        .affil {
-            display: inline;
-            margin-left: 4px;
-            color: #5d6d7e;
-            font-style: italic;
-            font-size: 0.92em;
-        }
-
-        @media (max-width: 700px) {
-            .schedule { grid-template-columns: 1fr; }
-            .slot-time { text-align: left; padding-top: 0; font-size: 0.82rem; }
-        }
-    </style>
 </head>
-<body>
+<body class="page-program">
     <header>
         <h1>RETRAI Workshop</h1>
         <h2><b>R</b>equirement <b>E</b>ngineering for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
@@ -117,8 +16,8 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#call-for-papers">Call for Papers</a></li>
             <li><a href="program.html" aria-current="page">Program</a></li>
-            <li><a href="keynote.html">Keynotes</a></li>
-            <li><a href="panel.html">Panel</a></li>
+            <!-- <li><a href="keynote.html">Keynotes</a></li> -->
+            <!-- <li><a href="panel.html">Panel</a></li> -->
             <li><a href="index.html#organizers">Organizers</a></li>
             <li><a href="index.html#venue">Venue</a></li>
             <li><a href="repository.html">Repository</a></li>
@@ -130,191 +29,121 @@
 
             <div class="schedule" aria-label="Workshop schedule">
                 <!-- Welcome -->
-                <div class="slot-time">09:30 – 09:40</div>
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Welcome &amp; Introduction  <span class="badge">10 min</span></div>
-                    <div class="note">If you plan to attend the workshop, please first register via RE registration <a href="https://conf.researchr.org/attending/RE-2025/registration">website</a>, and then complete this form using the following <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8M6g6J5BFgEhYBAbt9ZguN9EGW71EQVnixQWDbZbzGnEUhw/viewform?usp=header">LINK</a>. </div>
+                    <div class="block-title">Welcome &amp; Introduction  </div>
+                    <div class="note">If you plan to attend the workshop, please first register via RE registration <a href="https://conf.researchr.org/attending/RE-2026/registration">website</a>.</div>
                 </div>
 
                 <!-- Keynote 1 -->
-                <div class="slot-time">09:40 – 10:05</div>
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Keynote 1 – Reem Ayad <span class="badge">20 min talk + 5 min Q&amp;A</span></div>
-                    <div class="note"> The AI social contract: How human-AI relationships shape moral expectations.</div>
+                    <div class="block-title">Keynote 1 – Kurt Schneider </div>
+                    <div class="note">Title TBC</div>
                 </div>
 
-                <!-- Session 1 -->
-                <div class="slot-time">10:05 – 10:30</div>
+                <!-- Presentation Session 1 -->
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Session 1 – Trustworthy AI in Practice: Domains &amp; Applications</div>
+                    <div class="block-title">Presentation Session 1</div>
                     <ul class="papers">
-                        <li><em>Educational Requirements for Trustworthy Recommender Systems</em></li>
+                        <li><em>KPAI: Engineering Trustworthy and Impactful AI Systems</em></li>
                         <div class="authors">
-                            <div class="author"><strong>Alexandru Mateescu</strong> <span class="affil">Department of Philosophy, Université Paris 1 Panthéon-Sorbonne, Paris, France</span></div>
+                            <div class="author"><strong>Ethan Hadar, Tal Mozes and Oren Farage</strong></div>
                         </div>
 
-                        <li><em>Safe Experimentation with LLM-Controlled UAVs</em></li>
+                        <li><em>Trustworthy AI in Avionics Systems: What Can We Learn from Certification Argumentation?</em></li>
                         <div class="authors">
-                            <div class="author"><strong>Matthew Harris</strong> <span class="affil">SAIF Autonomy (London, United Kingdom)</span></div>
-                            <div class="author"><strong>Dewi Madden</strong> <span class="affil">SAIF Autonomy (London, United Kingdom)</span></div>
-                            <div class="author"><strong>Kyle Thomas</strong> <span class="affil">SAIF Autonomy (London, United Kingdom)</span></div>
+                            <div class="author"><strong>Anthony Fernandes Pires and Thomas Polacsek</strong></div>
                         </div>
 
-                        <li><em>Extrinsic Safeguarding Mechanism Requirements for Trustworthy Physical AI</em></li>
+                        <li><em>MESA: Requirements-Oriented Review of AI Benchmarks as Measurement Instruments</em></li>
                         <div class="authors">
-                            <div class="author"><strong>Matthew Harris</strong> <span class="affil">SAIF Autonomy (London, United Kingdom)</span></div>
-                            <div class="author"><strong>Dewi Madden</strong> <span class="affil">SAIF Autonomy (London, United Kingdom)</span></div>
+                            <div class="author"><strong>Vitor Raposo and Sanaa Alwidian</strong></div>
                         </div>
                     </ul>
                 </div>
 
                 <!-- Coffee 1 -->
-                <div class="slot-time">10:30 – 11:00</div>
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Coffee Break  <span class="badge">30 min</span></div>
-                </div>
-
-                <!-- Session 2 -->
-                <div class="slot-time">11:00 – 11:30</div>
-                <div class="slot-detail">
-                    <div class="block-title">Session 2 – Legal, Ethical, and Human-Centered Concerns</div>
-                    <ul class="papers">
-                        <li><em>Navigating the Human-Oversight Dilemma in AI-Powered Systems</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Eran Sadovski</strong> <span class="affil">Information Systems Dept., University of Haifa, (Haifa, Israel)</span></div>
-                            <div class="author"><strong>Itzik Aviv</strong> <span class="affil">The Academic College of Tel Aviv–Yaffo, (Tel Aviv, Israel)</span></div>
-                            <div class="author"><strong>Irit Hadar</strong> <span class="affil">Department of Information Systems, University of Haifa, (Haifa, Israel)</span></div>
-                        </div>
-
-                        <li><em>A Critical Look at the EU AI Act’s Requirements</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Matthias Wagner,</strong> <span class="affil">Dept. of Computer Science, Lund University
-Lund, Sweden</span></div>
-                            <div class="author"><strong>Marie-Therese Wittmann</strong> <span class="affil">Legal Expert, VERBUND Hydro Power GmbH
-Vienna, Austria</span></div>
-                            <div class="author"><strong>Markus Borg
-</strong> <span class="affil">Dept. of Computer Science, Lund University
-Lund, Sweden</span></div>
-                        </div>
-
-                        <li><em>Ethical and Empathetic Requirements for Trustworthy ChatBots</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Sophia Jit</strong> <span class="affil">University of Toronto (Toronto, Canada)</span></div>
-                            <div class="author"><strong>Nikita Dvornik</strong> <span class="affil">Palona AI (Montréal, Canada)</span></div>
-                        </div>
-
-                        <li><em>Multi-Agent LLMs as Ethics Advocates for AI-Based Systems</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Asma Yamani</strong> <span class="affil">King Fahd University of Petroleum and Minerals (Eastern Province, Saudi Arabia)</span></div>
-                            <div class="author"><strong>Malak Baslyman</strong> <span class="affil">King Fahd University of Petroleum and Minerals (Eastern Province, Saudi Arabia)</span></div>
-                            <div class="author"><strong>Moataz	Ahmed</strong> <span class="affil">King Fahd University of Petroleum and Minerals (Eastern Province, Saudi Arabia)</span></div>
-                        </div>
-                    </ul>
-                </div>
-
-                <!-- Panel -->
-                <div class="slot-time">11:30 – 12:30</div>
-                <div class="slot-detail">
-                    <div class="block-title">Panel Discussion – Defining Trustworthiness for Intelligent Agents  <span class="badge">60 min</span></div>
-                    <div class="note">
-                        With a stakeholder expert in ethics and law, a leading machine learning scientist, and a requirements engineering specialist.
-                        Discussion on needs, gaps, priorities, and first community steps.
-                    </div>
-                    <div class="authors">
-						<div class="author"><strong>Amel Bennaceur (Requirements engineer expert)</strong> <span class="affil">School of Computing at the Open University, ( Milton Keynes, UK)</span></div>
-						<div class="author"><strong>Nikita Dvornik (AI expert) </strong> <span class="affil">Palona AI (Montréal, Canada) </span></div>
-                        <div class="author"><strong>Reem Ayad (Ethical, and moral AI expert)</strong> <span class="affil">Department of Psychology, University of Toronto (Toronto, Canada)</span></div>
-                    </div>
-                </div>
-
-                <!-- Lunch -->
-                <div class="slot-time">12:30 – 14:00</div>
-                <div class="slot-detail">
-                    <div class="block-title">Lunch Break  <span class="badge">90 min</span></div>
-                </div>
-
-                <!-- Session 3 -->
-                <div class="slot-time">14:00 – 14:55</div>
-                <div class="slot-detail">
-                    <div class="block-title">Session 3 – Foundations &amp; Frameworks for Trustworthy AI</div>
-                    <ul class="papers">
-                        <li><em>Beyond the Checklist: Rethinking Trustworthiness in AI Systems</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Donatella Donati</strong> <span class="affil">University of L’Aquila (Aquila, Italy)</span></div>
-                            <div class="author"><strong>Paola Inverardi</strong> <span class="affil">Gran Sasso Science Institute (Aquila, Italy)</span></div>
-                            <div class="author"><strong>Beatrice Melis</strong> <span class="affil">University of Pisa &amp; Gran Sasso Science Institute (Pisa, Italy)</span></div>
-                            <div class="author"><strong>Patrizio Pelliccione</strong> <span class="affil">Gran Sasso Science Institute (Aquila, Italy)</span></div>
-                        </div>
-
-                        <li><em>Towards a Framework for Operationalizing the Specification of Trustworthy AI Requirements</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Hugo Villamizar</strong> <span class="affil">fortiss GmbH (Munich, Germany)</span></div>
-                            <div class="author"><strong>Daniel Mendez</strong> <span class="affil">Blekinge Institute of Technology (BTH - Karlskrona, Sweden) &amp; fortiss GmbH (Munich, Germany)</span></div>
-                            <div class="author"><strong>Marcos Kalinowski</strong> <span class="affil">PUC-Rio (Rio de Janeiro, Brazil)</span></div>
-                        </div>
-
-                        <li><em>How to Consider AI Technology Systems as Part of Human Normative Systems</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Matthew R. Whiteley</strong> <span class="affil">Department of Philosophy, University of York (York, England)</span></div>
-                        </div>
-
-                        <li><em>Prompt Engineering for Requirements Engineering: A Literature Review and Roadmap</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Kaicheng Huang</strong> <span class="affil">Faculty of Information Technology, Monash University (Melbourne, Australia)</span></div>
-                            <div class="author"><strong>Fanyu Wang</strong> <span class="affil">Faculty of Information Technology, Monash University (Melbourne, Australia)</span></div>
-                            <div class="author"><strong>Yutan Huang</strong> <span class="affil">Faculty of Information Technology, Monash University (Melbourne, Australia)</span></div>
-                            <div class="author"><strong>Chetan Arora</strong> <span class="affil">Faculty of Information Technology, Monash University (Melbourne, Australia)</span></div>
-                        </div>
-
-                        <li><em>Robustness Requirement Coverage for Vision-based AI Systems</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Sepeedeh Shahbeigi</strong> <span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                            <div class="author"><strong>Nawshin Mannan Proma</strong> <span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                            <div class="author"><strong>Victoria Hodge</strong> <span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                            <div class="author"><strong>Richard Hawkins</strong> <span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                            <div class="author"><strong>Boda Li</strong><span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                            <div class="author"><strong>Valentina Donzella</strong><span class="affil">Department of Computer Science, University of York (York, United Kingdom)</span></div>
-                        </div>
-                        <li><em>Towards Trustworthy Sentiment Analysis in Software Engineering</em></li>
-                        <div class="authors">
-                            <div class="author"><strong>Martin Obaidi</strong> <span class="affil">Leibniz University Hannover, Software Engineering Group (Germany)</span></div>
-                            <div class="author"><strong>Marc Herrmann</strong> <span class="affil">Leibniz University Hannover, Software Engineering Group (Germany)</span></div>
-                            <div class="author"><strong>Kurt Schneider</strong> <span class="affil">Leibniz University Hannover, Software Engineering Group (Germany)</span></div>
-                            <div class="author"><strong>Jil Klünder</strong> <span class="affil">FHDW Hannover, University of Applied Sciences (Germany)</span></div>
-                        </div>
-                    </ul>
-                </div>
-                
-                <div class="slot-time">14:55 – 15:30</div>
-                <div class="slot-detail">
-                    <div class="block-title">Poster session and networking <span class="badge">35 min</span></div>
-                </div>
-
-                <!-- Coffee 2 -->
-                <div class="slot-time">15:30 – 16:00</div>
-                <div class="slot-detail">
-                    <div class="block-title">Coffee Break <span class="badge">30 min</span></div>
+                    <div class="block-title">Coffee Break  </div>
                 </div>
 
                 <!-- Keynote 2 -->
-                <div class="slot-time">16:00 – 16:25</div>
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Keynote 2 - Didar Zowgi <span class="badge">20 min talk + 5 min Q&amp;A</span></div>
-                    <div class="note">On the Role of Transparency in Building Inclusive and Trustworthy AI Systems</div>
+                    <div class="block-title">Keynote 2 – Mehdi Mirakhorli </div>
+                    <div class="note">Title TBC</div>
                 </div>
 
-                <!-- Interactive Activity -->
-                <div class="slot-time">16:25 – 17:25</div>
+                <!-- Panel 1 -->
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Interactive Activity <span class="badge">60 min</span></div>
-                     <div class="note">Brainstorm trustworthiness for a Specific AI System</div>
+                    <div class="block-title">Panel 1 – The Benefits, Limitations and Risks of AI for Humanity and Society </div>
+                    <div class="note">A multidisciplinary panel featuring industry experts and researchers from a wide variety of fields.</div>
+                </div>
+
+                <!-- Lunch -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Lunch Break  </div>
+                </div>
+
+                <!-- Keynote 3 -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Keynote 3 – Jocelyn Maclure </div>
+                    <div class="note">Title TBC</div>
+                </div>
+
+                <!-- Presentation Session 2 -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Presentation Session 2 </div>
+                    <ul class="papers">
+                        <li><em>A Vision for Compliance-Aware Requirements Engineering in the Age of the EU AI Act</em></li>
+                        <div class="authors">
+                            <div class="author"><strong>T.Y. Emmy Lai</strong></div>
+                        </div>
+
+                        <li><em>Value-based Requirements Engineering for Human-centred AI: Foundations, Challenges, and a Research Agenda</em></li>
+                        <div class="authors">
+                            <div class="author"><strong>Nour Dkhil, Amel Bennaceur and Imen Benzarti</strong></div>
+                        </div>
+
+                        <li><em>Liability as a Requirement: Allocating Civil Responsibility for Agentic AI Systems</em></li>
+                        <div class="authors">
+                            <div class="author"><strong>Emma Lunardi</strong></div>
+                        </div>
+                    </ul>
+                </div>
+
+                <!-- Coffee 2 -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Coffee Break</div>
+                </div>
+
+                <!-- Industry Talk -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Industry Talk</div>
+                    <div class="note">Title TBC</div>
+                </div>
+
+                <!-- Panel 2 -->
+                <div class="slot-time"></div>
+                <div class="slot-detail">
+                    <div class="block-title">Panel 2 – The Benefits, Limitations and Risks of AI for Vulnerable Users</div>
+                    <div class="note">A multidisciplinary panel featuring industry experts and researchers from a wide variety of fields.</div>
                 </div>
 
                 <!-- Closing -->
-                <div class="slot-time">17:25 – 17:30</div>
+                <div class="slot-time"></div>
                 <div class="slot-detail">
-                    <div class="block-title">Closing Remarks &amp; Next Steps</div>
-                    <div class="note">If you attended the workshop, please at the end, complete the post-workshop survey using the following <a href="https://docs.google.com/forms/d/e/1FAIpQLSe48joRCrkn0H6Qjca3KYCvSeKhpNR4JxlmK-w7GijSdvqZ4g/viewform?usp=header">LINK</a>. </div>
+                    <div class="block-title">Discussion &amp; Closing Remarks</div>
+                    <div class="note">If you attended the workshop, please at the end, complete the post-workshop survey using the following <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7SArpocs4HrU_fLJuYmRy6_CfKPv_UHxQsTxOam643yKTEA/viewform">LINK</a>. </div>
                 </div>
             </div>
         </section>

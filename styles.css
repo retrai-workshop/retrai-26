@@ -1,5 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap');
 
+/* =========================================================
+   RETRAI — single stylesheet for every page.
+
+   Contents
+     1. Design tokens
+     2. Base & typography
+     3. Layout chrome (header, nav, main, footer)
+     4. Shared components (pill, inline links, banner)
+     5. Page: Home            body.page-home
+     6. Page: Program         body.page-program
+     7. Page: Keynotes        body.page-keynotes
+     8. Page: Panel           body.page-panel
+     9. Page: Repository      body.page-repository
+
+   Page-specific rules are scoped by the body class so they can
+   never leak into another page.
+   ========================================================= */
+
+
+/* =========================================================
+   1. Design tokens
+   ========================================================= */
 :root {
     --bg:      #F1F0E9;
     --text:    #2c3e50;
@@ -12,14 +34,22 @@
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
     --shadow:    0 2px 12px rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.05);
     --radius:    8px;
+
+    /* Type: geometric sans for running text, serif for headings */
+    --font-body: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    --font-head: 'Source Serif 4', 'Century Schoolbook', Georgia, 'Times New Roman', serif;
 }
 
+
+/* =========================================================
+   2. Base & typography
+   ========================================================= */
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     margin: 0;
     padding: 0;
     background: var(--bg);
@@ -55,7 +85,38 @@ li {
     line-height: 1.7;
 }
 
+/* ── Headings ── */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-head);
+}
 
+h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+}
+
+section > h2 {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.75rem;
+}
+
+
+/* =========================================================
+   3. Layout chrome
+   ========================================================= */
 header {
     background-color: var(--brand);
     padding: 3rem 2rem;
@@ -86,7 +147,6 @@ header h2 {
     opacity: 0.82;
     letter-spacing: 0.25px;
 }
-
 
 nav {
     background-color: #2d4433;
@@ -120,13 +180,11 @@ nav a {
     border-bottom: 2px solid transparent;
 }
 
-
 nav a:hover,
 nav a[aria-current="page"] {
     color: #fff;
     border-bottom-color: var(--brand-2);
 }
-
 
 main {
     padding: 3.5rem 2rem;
@@ -138,47 +196,6 @@ main {
 @media (max-width: 640px) {
     main { padding: 2rem 1rem; }
 }
-
-h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.55rem;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-    line-height: 1.25;
-}
-
-h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.1px;
-}
-
-
-section > h2 {
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 1.75rem;
-}
-
-
-.deadline-banner {
-    background-color: var(--brand-2);
-    color: #fff;
-    text-align: center;
-    padding: 0.65rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-}
-
-.deadline-banner span {
-    font-weight: 400;
-    opacity: 0.92;
-}
-
 
 footer {
     background-color: var(--brand);
@@ -195,3 +212,1020 @@ footer p {
     margin: 0;
 }
 
+
+/* =========================================================
+   4. Shared components
+   ========================================================= */
+.deadline-banner {
+    background-color: var(--brand-2);
+    color: #fff;
+    text-align: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.deadline-banner span {
+    font-weight: 400;
+    opacity: 0.92;
+}
+
+/* ── Pill tag (keynotes, panel) ── */
+.pill {
+    background: #eaf7f3;
+    border: 1px solid #d6eee5;
+    color: #1b6f5b;
+    border-radius: 999px;
+    padding: 0.15rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ── Trailing link row (keynotes, panel) ── */
+.links { margin-top: 0.5rem; }
+.links a { color: #3498db; text-decoration: none; font-size: 0.9rem; }
+.links a:hover { text-decoration: underline; }
+
+
+/* =========================================================
+   5. Page: Home
+   ========================================================= */
+.page-home section {
+    margin-bottom: 3.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-home section:last-child { border-bottom: none; }
+
+/* ── Content links — underline accent ── */
+.page-home main a:not(.organizer-email) {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--brand);
+    padding-bottom: 1px;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.page-home main a:not(.organizer-email):hover {
+    color: var(--brand-2);
+    border-bottom-color: var(--brand-2);
+}
+
+/* ── Dates / info tables ── */
+.page-home table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.page-home table td {
+    padding: 0.9rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.55;
+    text-align: left;
+}
+
+.page-home table td:first-child {
+    font-weight: 500;
+    width: 60%;
+}
+
+.page-home table td:last-child {
+    color: var(--muted);
+}
+
+.page-home table tbody tr:nth-child(even) td {
+    background: rgba(0,0,0,0.025);
+}
+
+.page-home table tr:last-child td { border-bottom: none; }
+
+/* ── Two-column topic list ── */
+.page-home .centered-list {
+    columns: 2;
+    column-gap: 2rem;
+    padding-left: 1.2rem;
+    font-size: 0.925rem;
+    line-height: 1.8;
+}
+
+.page-home .centered-list li { break-inside: avoid; }
+
+/* ── Organizer cards ── */
+.page-home .solo-card-wrap {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+}
+
+.page-home .solo-card-wrap .organizer-card {
+    width: 100%;
+    max-width: 300px;
+}
+
+.page-home .organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.page-home .organizer-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--brand);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.6rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: left;
+}
+
+.page-home .organizer-name {
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+}
+
+.page-home .organizer-dept {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.45;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}
+
+.page-home .organizer-inst {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--brand);
+    letter-spacing: 0.01em;
+    margin-top: auto;
+}
+
+.page-home .organizer-email {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    word-break: break-all;
+}
+
+.page-home .organizer-email:hover {
+    color: var(--brand);
+    text-decoration: underline;
+}
+
+.page-home .ext-arrow {
+    display: inline-block;
+    font-size: 0.7em;
+    margin-left: 0.25em;
+    opacity: 0.45;
+    vertical-align: super;
+    transition: opacity 0.15s;
+}
+
+.page-home .organizer-name a:hover .ext-arrow {
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    .page-home .centered-list { columns: 1; }
+}
+
+
+/* =========================================================
+   6. Page: Program — schedule & paper listing
+   ========================================================= */
+.page-program #program > h2 {
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 2.5rem;
+}
+
+.page-program .schedule {
+    display: grid;
+    grid-template-columns: 115px 1fr;
+    gap: 12px 28px;
+    align-items: start;
+}
+
+.page-program .slot-time {
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: #34495e;
+    text-align: right;
+    padding-top: 18px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+}
+
+.page-program .slot-detail {
+    background: #f6f8fa;
+    border: 1px solid #e1e5ea;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.page-program .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: #1abc9c;
+    color: #fff;
+    margin-left: 10px;
+    vertical-align: middle;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.page-program .block-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+}
+
+.page-program .papers {
+    margin: 12px 0 0 0;
+    padding-left: 18px;
+}
+
+.page-program .papers li {
+    margin: 8px 0;
+    line-height: 1.5;
+    font-size: 0.93rem;
+}
+
+.page-program .note {
+    font-size: 0.875rem;
+    color: #5d6d7e;
+    margin-top: 8px;
+    line-height: 1.55;
+}
+
+.page-program .authors {
+    margin-top: 8px;
+    font-size: 0.83rem;
+    color: #2c3e50;
+    padding-left: 12px;
+    border-left: 2px solid #1abc9c;
+    line-height: 1.5;
+}
+
+.page-program .author { margin: 3px 0; }
+
+.page-program .author strong {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.page-program .affil {
+    display: inline;
+    margin-left: 4px;
+    color: #5d6d7e;
+    font-style: italic;
+    font-size: 0.92em;
+}
+
+@media (max-width: 700px) {
+    .page-program .schedule { grid-template-columns: 1fr; }
+    .page-program .slot-time { text-align: left; padding-top: 0; font-size: 0.82rem; }
+}
+
+
+/* =========================================================
+   7. Page: Keynotes
+   ========================================================= */
+.page-keynotes #program h2 {
+    text-align: center;
+    font-size: 1.55rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 2.5rem;
+}
+
+.page-keynotes .keynotes-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.page-keynotes .keynote-card {
+    grid-column: span 12;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.page-keynotes .photo {
+    width: 130px;
+    height: 130px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.page-keynotes .speaker-name {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+}
+
+.page-keynotes .speaker-affil {
+    margin: 0 0 0.75rem 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.page-keynotes .talk-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+}
+
+.page-keynotes .subgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.page-keynotes .meta {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.page-keynotes details {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+}
+
+.page-keynotes summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.page-keynotes summary:hover { opacity: 1; }
+
+.page-keynotes .abstract,
+.page-keynotes .bio {
+    line-height: 1.65;
+    font-size: 0.925rem;
+    margin: 0.65rem 0 0 0;
+}
+
+@media (max-width: 720px) {
+    .page-keynotes .keynote-card { grid-template-columns: 1fr; }
+    .page-keynotes .photo { width: 100%; height: 220px; }
+}
+
+
+/* =========================================================
+   8. Page: Panel
+   ========================================================= */
+.page-panel .panel-intro {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.page-panel .panel-intro h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.page-panel .panel-meta {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 0.85rem;
+    justify-content: center;
+    margin: 0.5rem 0 1rem;
+}
+
+.page-panel .panel-desc {
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 68ch;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-align: left;
+}
+
+.page-panel .panelists { margin-top: 3rem; }
+
+.page-panel .panelists h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1.25rem 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+}
+
+.page-panel .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.page-panel .card {
+    grid-column: span 12;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.page-panel .photo {
+    width: 140px;
+    height: 140px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.page-panel .name {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+}
+
+.page-panel .affil {
+    margin: 0 0 0.75rem 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.page-panel .bio {
+    line-height: 1.65;
+    font-size: 0.925rem;
+}
+
+@media (max-width: 720px) {
+    .page-panel .card { grid-template-columns: 1fr; }
+    .page-panel .photo { width: 100%; height: 240px; }
+}
+
+
+/* =========================================================
+   9. Page: Repository
+   ========================================================= */
+.page-repository header.repo-hero {
+    background: var(--brand);
+    padding: 2.75rem 2rem 2.25rem;
+    text-align: center;
+    color: #fff;
+}
+
+.page-repository header.repo-hero h1 {
+    margin: 0 0 0.35rem;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.page-repository header.repo-hero h1::after { display: none; }
+
+.page-repository header.repo-hero p {
+    margin: 0;
+    font-size: 0.92rem;
+    opacity: 0.78;
+    letter-spacing: 0.02em;
+}
+
+/* ── Tabs ── */
+.page-repository .tab-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0 1.75rem;
+    flex-wrap: wrap;
+}
+
+.page-repository .tab-btn {
+    background: #fff;
+    color: var(--muted);
+    border: 2px solid var(--border);
+    border-radius: 40px;
+    padding: 0.55rem 1.4rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-family: var(--font-body);
+}
+
+.page-repository .tab-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+}
+
+.page-repository .tab-btn.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+    box-shadow: 0 4px 16px rgba(65,100,74,0.28);
+}
+
+.page-repository .tab-btn.active.orange {
+    background: var(--brand);
+    border-color: var(--brand);
+    box-shadow: 0 4px 16px rgba(233,118,43,0.28);
+}
+
+.page-repository .tab-panel { display: none; }
+.page-repository .tab-panel.active { display: block; }
+
+/* ── Headings & labels ── */
+.page-repository .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.page-repository .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--brand-2);
+}
+
+.page-repository .sub-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-repository .sub-heading .badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    background: var(--brand);
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.15rem 0.55rem;
+    letter-spacing: 0.05em;
+}
+
+.page-repository .sub-heading .badge.orange { background: var(--brand-2); }
+.page-repository .sub-heading .badge.teal   { background: var(--muted); }
+
+.page-repository .tab-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0 0 1.75rem;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border-left: 3px solid var(--brand);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    line-height: 1.6;
+    max-width: none;
+}
+
+/* ── Filters ── */
+.page-repository .domain-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+}
+
+.page-repository .filter-pill {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 20px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font-body);
+    letter-spacing: 0.02em;
+}
+
+.page-repository .filter-pill:hover { border-color: var(--brand); color: var(--brand); }
+
+.page-repository .filter-pill.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+/* ── Rules table ── */
+.page-repository .rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.page-repository .rules-table thead tr { background: var(--brand); color: #fff; }
+
+.page-repository .rules-table thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.page-repository .rules-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+}
+
+.page-repository .rules-table tbody tr:last-child { border-bottom: none; }
+.page-repository .rules-table tbody tr:hover { background: #f8faf8; }
+
+.page-repository .rules-table td {
+    padding: 0.9rem 1rem;
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--text);
+}
+
+.page-repository .rules-table td.rule-text {
+    font-size: 0.875rem;
+    max-width: 560px;
+}
+
+.page-repository .domain-chip {
+    display: inline-block;
+    background: #edf7f0;
+    color: #2d7a4a;
+    border: 1px solid #b8dfc5;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+}
+
+/* ── Paper badges ── */
+.page-repository .paper-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.page-repository .paper-badge {
+    display: block;
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.page-repository .paper-badge:hover .paper-badge-title {
+    text-decoration: underline;
+}
+
+.page-repository .paper-badge-title {
+    display: block;
+    font-weight: 500;
+    font-size: 0.84rem;
+    color: var(--brand);
+}
+
+.page-repository .paper-badge-authors {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+}
+
+/* ── Stat cards ── */
+.page-repository .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.page-repository .stat-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--brand);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.page-repository .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.page-repository .stat-card:nth-child(2),
+.page-repository .stat-card:nth-child(3),
+.page-repository .stat-card:nth-child(4) { border-top-color: var(--brand); }
+
+.page-repository .stat-number {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--brand);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.03em;
+}
+
+.page-repository .stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── Word cloud ── */
+.page-repository .wordcloud-wrap {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+}
+
+.page-repository .wordcloud-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+}
+
+.page-repository .wordcloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    min-height: 160px;
+}
+
+.page-repository .wc-word {
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1.2;
+    transition: transform 0.15s, opacity 0.15s;
+    cursor: default;
+}
+
+.page-repository .wc-word:hover { transform: scale(1.08); opacity: 0.8; }
+.page-repository .wc-word.pink  { color: #c0396b; }
+.page-repository .wc-word.blue  { color: #2980b9; }
+.page-repository .wc-word.dark  { color: #2c3e50; }
+
+/* ── Breakdown bars ── */
+.page-repository .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.page-repository .breakdown-item {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page-repository .breakdown-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.page-repository .breakdown-info { flex: 1; }
+.page-repository .breakdown-name { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.page-repository .breakdown-count { font-size: 0.75rem; color: var(--muted); }
+
+.page-repository .breakdown-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 0.35rem;
+    overflow: hidden;
+}
+
+.page-repository .breakdown-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+}
+
+/* ── Papers table ── */
+.page-repository .papers-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.84rem;
+}
+
+.page-repository .papers-table thead tr { background: #2d4433; color: #fff; }
+
+.page-repository .papers-table thead th {
+    padding: 0.8rem 0.9rem;
+    text-align: left;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.page-repository .papers-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+}
+
+.page-repository .papers-table tbody tr:last-child { border-bottom: none; }
+.page-repository .papers-table tbody tr:hover { background: #f8faf8; }
+
+.page-repository .papers-table td {
+    padding: 0.75rem 0.9rem;
+    vertical-align: top;
+    color: var(--text);
+    line-height: 1.45;
+}
+
+.page-repository .paper-count-cell {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--brand);
+    white-space: nowrap;
+}
+
+.page-repository .paper-id-cell { font-weight: 800; color: var(--brand); font-size: 0.78rem; white-space: nowrap; }
+.page-repository .paper-title-cell { font-weight: 500; }
+.page-repository .paper-authors { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+.page-repository .tag-chip {
+    display: inline-block;
+    background: #f0f4f0;
+    color: var(--brand);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+}
+
+/* ── Concern cards ── */
+.page-repository .concerns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.page-repository .concern-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--brand);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.page-repository .concern-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.page-repository .concern-name { font-weight: 700; font-size: 0.9rem; color: var(--brand); margin-bottom: 0.4rem; }
+.page-repository .concern-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.6rem; }
+
+/* ── Stats sub-tabs ── */
+.page-repository .stats-sub-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.page-repository .stats-sub-btn {
+    background: #fff;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: var(--font-body);
+}
+
+.page-repository .stats-sub-btn:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+}
+
+.page-repository .stats-sub-btn.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+}
+
+/* ── Empty & loading states ── */
+.page-repository .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+.page-repository .loading { text-align: center; padding: 4rem 1rem; color: var(--muted); font-size: 0.9rem; }
+
+.page-repository .loading::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    margin: 1rem auto 0;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 640px) {
+    .page-repository .rules-table thead th:nth-child(3),
+    .page-repository .rules-table td:nth-child(3) { display: none; }
+    .page-repository .tab-btn { font-size: 0.72rem; padding: 0.45rem 1rem; }
+    .page-repository .repo-hero h2 { font-size: 1.5rem; }
+}
