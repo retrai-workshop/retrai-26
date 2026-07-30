@@ -516,7 +516,7 @@ const DATA_2026 = {
   "subtitle": "Workshop on Requirements Engineering for Trustworthy AI",
   "event": "Co-located with RE'26",
   "year": 2026,
-  "total_papers": 8,
+  "total_papers": 7,
   "classification_scheme": {
     "Universal": "Applicable to any AI system, regardless of domain or deployment context.",
     "Domain-Specific": "Applies within a specific application domain.",
@@ -582,14 +582,6 @@ const DATA_2026 = {
     ],
     "customizable": [
       {
-        "rule": "The mean output tokens per response shall not exceed a user-defined threshold to manage budget and latency.",
-        "papers": ["P06"]
-      },
-      {
-        "rule": "The system shall provide a visible rationale only if the specific request class is regulated; otherwise, it may be suppressed to save costs.",
-        "papers": ["P06"]
-      },
-      {
         "rule": "The system must support 'soft' value commitments that are configurable and user-adjustable at runtime based on individual preferences.",
         "papers": ["P08"]
       }
@@ -617,10 +609,6 @@ const DATA_2026 = {
       {
         "challenge": "The 'claim proportionality' risk, where benchmark scores are interpreted as broad intelligence rather than narrow task performance, remains high.",
         "papers": ["P05"]
-      },
-      {
-        "challenge": "Balancing the accuracy-verbosity trade-off requires complex routing rules because suppressing rationales can severely hurt performance on arithmetic tasks.",
-        "papers": ["P06"]
       }
     ],
     "domain_specific": [],
@@ -636,12 +624,12 @@ const DATA_2026 = {
     {
       "concern": "Explainability & Transparency",
       "description": "Providing human-understandable rationale for system decisions, especially when those decisions result in harm or are made by high-risk agents.",
-      "papers": ["P02", "P04", "P06", "P07"]
+      "papers": ["P02", "P04", "P07"]
     },
     {
       "concern": "Economic Viability & Impact",
       "description": "Ensuring AI systems deliver measurable financial value while aligning technical variations with deterministic business KPIs.",
-      "papers": ["P03", "P06"]
+      "papers": ["P03"]
     },
     {
       "concern": "Value Alignment & Human-Centeredness",
@@ -710,17 +698,6 @@ const DATA_2026 = {
       "field": "Software Testing / RE",
       "pdf": "RETRAI-25-PAPERS/2026/MESA Requirements-Oriented Review of AI Benchmarks as Measurement Instruments.pdf",
       "citation": "Raposo, V., & Alwidian, S. (2026). MESA: Requirements-Oriented Review of AI Benchmarks as Measurement Instruments. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
-    },
-    {
-      "id": "P06",
-      "title": "Specifying Token-Cost as a Trustworthy-AI Requirement",
-      "authors": ["Venkat Chavan Nagabhushana"],
-      "affiliations": [],
-      "year": 2026,
-      "domain": "LLM Applications / RE",
-      "field": "Requirements Engineering / NLP",
-      "pdf": "RETRAI-25-PAPERS/2026/Specifying Token-Cost as a Trustworthy-AI Requirement.pdf",
-      "citation": "Nagabhushana, V. C. (2026). Specifying Token-Cost as a Trustworthy-AI Requirement. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
     },
     {
       "id": "P07",
