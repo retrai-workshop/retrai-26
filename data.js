@@ -1,9 +1,25 @@
-const DATA = {
+/* =====================================================================
+   RETRAI paper repository data, one dataset per workshop edition.
+
+   Paper IDs (P01, P02, …) are scoped to their own edition — 2025's P01
+   and 2026's P01 are different papers. Every "papers" array therefore
+   only ever refers to IDs inside the same dataset.
+
+   To add an edition: define a DATA_<year> object with the same shape
+   and register it in DATASETS at the bottom of this file.
+   ===================================================================== */
+
+const DATA_2025 = {
   "title": "RETRAI 2025 Paper Repository",
   "subtitle": "Workshop on Requirements Engineering for Trustworthy AI",
   "event": "Co-located with RE'25",
   "year": 2025,
   "total_papers": 14,
+  "stats": {
+    "submissions": 17,
+    "in_workshop": 13,
+    "registrations": 59
+  },
   "classification_scheme": {
     "Universal": "Applicable to any AI system, regardless of domain or deployment context.",
     "Domain-Specific": "Applies within a specific application domain.",
@@ -493,4 +509,246 @@ const DATA = {
       "citation": "Huang, K., Wang, F., Huang, Y., & Arora, C. (2025). Prompt Engineering for Requirements Engineering: A Literature Review and Roadmap. In Proceedings of RETRAI 2025: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'25, Osaka, Japan."
     }
   ]
+}
+
+const DATA_2026 = {
+  "title": "RETRAI 2026 Paper Repository",
+  "subtitle": "Workshop on Requirements Engineering for Trustworthy AI",
+  "event": "Co-located with RE'26",
+  "year": 2026,
+  "total_papers": 8,
+  "classification_scheme": {
+    "Universal": "Applicable to any AI system, regardless of domain or deployment context.",
+    "Domain-Specific": "Applies within a specific application domain.",
+    "Customizable": "Configurable to an individual user's profile, preferences, accessibility needs, or deployment contexts."
+  },
+
+  "requirements_for_trustworthy_ai": {
+    "universal": [
+      {
+        "rule": "The system shall maintain a traceable, citable link between every project requirement and its originating legal provision to ensure auditability.",
+        "papers": ["P01"]
+      },
+      {
+        "rule": "The system must be validated against a 4CT quality schema, ensuring Completeness, Consistency, Correctness, and Coherence of requirements.",
+        "papers": ["P01"]
+      },
+      {
+        "rule": "An AI system must include a traffic-light Human-In-The-Loop mechanism that triggers expert review when mapping confidence falls below a defined threshold.",
+        "papers": ["P01"]
+      },
+      {
+        "rule": "The system shall maintain complete and temporally ordered logs of all consequential actions (tool calls, API interactions) protected by cryptographic integrity mechanisms.",
+        "papers": ["P04"]
+      },
+      {
+        "rule": "Any capability claim based on a benchmark must be traceable from the claimed capability to the specific task design, metric, and score interpretation.",
+        "papers": ["P05"]
+      },
+      {
+        "rule": "Benchmarks shall report uncertainty metrics, including confidence intervals and run-to-run variance, for any reported score.",
+        "papers": ["P05"]
+      },
+      {
+        "rule": "Stakeholder values must be represented as runtime-relevant concerns that can be monitored, reasoned about, and revised as the system operates.",
+        "papers": ["P08"]
+      },
+      {
+        "rule": "The system must explicitly specify the conditions under which human intervention is required during its operation.",
+        "papers": ["P08"]
+      }
+    ],
+    "domain_specific": [
+      {
+        "rule": "When a user discloses thoughts of self-harm, the system shall immediately provide crisis-support resources and encourage professional contact.",
+        "domain": "Healthcare / Therapy",
+        "papers": ["P02"]
+      },
+      {
+        "rule": "When providing therapeutic advice, the system shall clearly communicate that it is not a licensed mental-health professional.",
+        "domain": "Healthcare / Therapy",
+        "papers": ["P02"]
+      },
+      {
+        "rule": "The ML model architecture must be formally described prior to the training phase.",
+        "domain": "Avionics",
+        "papers": ["P07"]
+      },
+      {
+        "rule": "Post-training optimizations, such as pruning or quantization, must undergo rigorous documentation and impact assessment to ensure safety properties are maintained.",
+        "domain": "Avionics",
+        "papers": ["P07"]
+      }
+    ],
+    "customizable": [
+      {
+        "rule": "The mean output tokens per response shall not exceed a user-defined threshold to manage budget and latency.",
+        "papers": ["P06"]
+      },
+      {
+        "rule": "The system shall provide a visible rationale only if the specific request class is regulated; otherwise, it may be suppressed to save costs.",
+        "papers": ["P06"]
+      },
+      {
+        "rule": "The system must support 'soft' value commitments that are configurable and user-adjustable at runtime based on individual preferences.",
+        "papers": ["P08"]
+      }
+    ]
+  },
+
+  "challenges_for_trustworthy_ai": {
+    "universal": [
+      {
+        "challenge": "Operationalizing vague governance language from the EU AI Act into concrete, testable engineering artifacts lacks standardized tools and processes.",
+        "papers": ["P01", "P07"]
+      },
+      {
+        "challenge": "Translating abstract ethical principles (e.g., 'fairness') into measurable system behaviors involves complex multi-level operationalization risks.",
+        "papers": ["P08"]
+      },
+      {
+        "challenge": "Maintaining a complete impact topology map that captures dependencies between AI assets and business processes is resource-intensive during system evolution.",
+        "papers": ["P03"]
+      },
+      {
+        "challenge": "Closing the gap between design-time value specification and actual system behavior during runtime remains a significant methodological hurdle.",
+        "papers": ["P08"]
+      },
+      {
+        "challenge": "The 'claim proportionality' risk, where benchmark scores are interpreted as broad intelligence rather than narrow task performance, remains high.",
+        "papers": ["P05"]
+      },
+      {
+        "challenge": "Balancing the accuracy-verbosity trade-off requires complex routing rules because suppressing rationales can severely hurt performance on arithmetic tasks.",
+        "papers": ["P06"]
+      }
+    ],
+    "domain_specific": [],
+    "customized": []
+  },
+
+  "trustworthy_ai_concerns": [
+    {
+      "concern": "Auditability & Traceability",
+      "description": "Ensuring there is a clear, citable link from high-level legal or ethical principles down to technical system logs and requirements.",
+      "papers": ["P01", "P04", "P05", "P07"]
+    },
+    {
+      "concern": "Explainability & Transparency",
+      "description": "Providing human-understandable rationale for system decisions, especially when those decisions result in harm or are made by high-risk agents.",
+      "papers": ["P02", "P04", "P06", "P07"]
+    },
+    {
+      "concern": "Economic Viability & Impact",
+      "description": "Ensuring AI systems deliver measurable financial value while aligning technical variations with deterministic business KPIs.",
+      "papers": ["P03", "P06"]
+    },
+    {
+      "concern": "Value Alignment & Human-Centeredness",
+      "description": "Designing systems that actively negotiate and uphold pluralistic stakeholder values through collaborative human-AI processes.",
+      "papers": ["P02", "P08"]
+    },
+    {
+      "concern": "Safety & Robustness",
+      "description": "Guaranteeing predictable behavior and maintaining rigorous safety evidence, particularly in safety-critical domains like avionics.",
+      "papers": ["P01", "P07"]
+    }
+  ],
+
+  "accepted_papers": [
+    {
+      "id": "P01",
+      "title": "A Vision for Compliance-Aware Requirements Engineering in the Age of the EU AI Act",
+      "authors": ["T.Y. Emmy Lai"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Regulatory / Cross-domain",
+      "field": "AI Governance / Law",
+      "pdf": "RETRAI-25-PAPERS/2026/A Vision for Compliance-Aware Requirements Engineering in the Age of the EU AI Act.pdf",
+      "citation": "Lai, T. Y. E. (2026). A Vision for Compliance-Aware Requirements Engineering in the Age of the EU AI Act. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P02",
+      "title": "CRAYON: Supporting the Elicitation of Pluralistic Normative Requirements for Autonomous Systems",
+      "authors": ["Laila Mahmoud Daw Abodinar"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Healthcare / Therapy",
+      "field": "Requirements Engineering / AI Ethics",
+      "pdf": "RETRAI-25-PAPERS/2026/CRAYON.pdf",
+      "citation": "Abodinar, L. M. D. (2026). CRAYON: Supporting the Elicitation of Pluralistic Normative Requirements for Autonomous Systems. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P03",
+      "title": "KPAI: Engineering Trustworthy and Impactful AI Systems",
+      "authors": ["Ethan Hadar", "Tal Mozes", "Oren Farage"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Cross-domain",
+      "field": "AI Governance / Business Value",
+      "pdf": "RETRAI-25-PAPERS/2026/KPAI Engineering Trustworthy and Impactful AI Systems.pdf",
+      "citation": "Hadar, E., Mozes, T., & Farage, O. (2026). KPAI: Engineering Trustworthy and Impactful AI Systems. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P04",
+      "title": "Liability as a Requirement: Allocating Civil Responsibility for Agentic AI Systems",
+      "authors": ["Emma Lunardi"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Regulatory / Cross-domain",
+      "field": "AI Governance / Law",
+      "pdf": "RETRAI-25-PAPERS/2026/Liability as a Requirement Allocating Civil Responsibility for Agentic AI Systems.pdf",
+      "citation": "Lunardi, E. (2026). Liability as a Requirement: Allocating Civil Responsibility for Agentic AI Systems. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P05",
+      "title": "MESA: Requirements-Oriented Review of AI Benchmarks as Measurement Instruments",
+      "authors": ["Vitor Raposo", "Sanaa Alwidian"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Benchmarking / Evaluation",
+      "field": "Software Testing / RE",
+      "pdf": "RETRAI-25-PAPERS/2026/MESA Requirements-Oriented Review of AI Benchmarks as Measurement Instruments.pdf",
+      "citation": "Raposo, V., & Alwidian, S. (2026). MESA: Requirements-Oriented Review of AI Benchmarks as Measurement Instruments. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P06",
+      "title": "Specifying Token-Cost as a Trustworthy-AI Requirement",
+      "authors": ["Venkat Chavan Nagabhushana"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "LLM Applications / RE",
+      "field": "Requirements Engineering / NLP",
+      "pdf": "RETRAI-25-PAPERS/2026/Specifying Token-Cost as a Trustworthy-AI Requirement.pdf",
+      "citation": "Nagabhushana, V. C. (2026). Specifying Token-Cost as a Trustworthy-AI Requirement. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P07",
+      "title": "Trustworthy AI in Avionics Systems: What Can We Learn from Certification Argumentation?",
+      "authors": ["Anthony Fernandes Pires", "Thomas Polacsek"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Avionics / Safety-Critical",
+      "field": "Safety Engineering",
+      "pdf": "RETRAI-25-PAPERS/2026/Trustworthy AI in Avionics Systems What Can We Learn from Certification Argumentation.pdf",
+      "citation": "Fernandes Pires, A., & Polacsek, T. (2026). Trustworthy AI in Avionics Systems: What Can We Learn from Certification Argumentation? In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    },
+    {
+      "id": "P08",
+      "title": "Value-based Requirements Engineering for Human-centred AI: Foundations, Challenges, and a Research Agenda",
+      "authors": ["Nour Dkhil", "Amel Bennaceur", "Imen Benzarti"],
+      "affiliations": [],
+      "year": 2026,
+      "domain": "Cross-domain",
+      "field": "Requirements Engineering / AI Ethics",
+      "pdf": "RETRAI-25-PAPERS/2026/Value-based Requirements Engineering.pdf",
+      "citation": "Dkhil, N., Bennaceur, A., & Benzarti, I. (2026). Value-based Requirements Engineering for Human-centred AI: Foundations, Challenges, and a Research Agenda. In Proceedings of RETRAI 2026: Workshop on Requirements Engineering for Trustworthy AI, co-located with RE'26."
+    }
+  ]
+}
+
+/* Registry of editions — newest first is handled in the UI, not here. */
+const DATASETS = {
+  "2025": DATA_2025,
+  "2026": DATA_2026
 }

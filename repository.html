@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repository - RETRAI 2025</title>
+<title>Repository - RETRAI</title>
 <link rel="stylesheet" href="styles.css">
 <script src="data.js"></script>
 </head>
@@ -25,26 +25,38 @@
 </nav>
 
 <main>
-  <section id="repository">
+  <div class="repo-layout">
 
+    <aside class="repo-sidebar" aria-label="Repository editions">
+      <div class="sidebar-label">Editions</div>
+      <ul class="year-nav" id="year-nav"></ul>
+    </aside>
 
-    <div class="tab-bar">
-      <button class="tab-btn active"  data-tab="universal">Universal</button>
-      <button class="tab-btn"         data-tab="domain">Domain-Specific</button>
-      <button class="tab-btn"         data-tab="custom">Customizable</button>
-      <button class="tab-btn orange"  data-tab="stats">Stats &amp; Papers</button>
+    <div class="repo-body">
+      <section id="repository">
+
+        <div class="edition-header" id="edition-header"></div>
+
+        <div class="tab-bar">
+          <button class="tab-btn active"  data-tab="universal">Universal</button>
+          <button class="tab-btn"         data-tab="domain">Domain-Specific</button>
+          <button class="tab-btn"         data-tab="custom">Customizable</button>
+          <button class="tab-btn orange"  data-tab="stats">Stats &amp; Papers</button>
+        </div>
+
+        <div id="tab-content">
+          <div class="loading" id="loading-indicator">Loading repository data…</div>
+        </div>
+
+      </section>
+
+      <section id="stats-section">
+        <h2>Stats &amp; Papers</h2>
+        <div id="stats-content"></div>
+      </section>
     </div>
 
-    <div id="tab-content">
-      <div class="loading" id="loading-indicator">Loading repository data…</div>
-    </div>
-
-  </section>
-
-  <section id="stats-section">
-    <h2>Stats &amp; Papers</h2>
-    <div id="stats-content"></div>
-  </section>
+  </div>
 </main>
 
 <footer>
@@ -55,12 +67,70 @@
 let activeTab = 'universal';
 let activeDomainFilter = 'all';
 
+/* Editions, newest first. The active one is exposed as DATA so every
+   render function below reads from a single edition at a time. */
+const YEARS = Object.keys(DATASETS).sort().reverse();
+let activeYear = YEARS.includes(location.hash.replace('#','')) ? location.hash.replace('#','') : YEARS[0];
+let DATA = DATASETS[activeYear];
+
 function loadData() {
-  document.getElementById('loading-indicator').remove();
+  const loader = document.getElementById('loading-indicator');
+  if (loader) loader.remove();
+  renderYearNav();
+  renderEdition();
+}
+
+function renderEdition() {
+  renderEditionHeader();
   renderTab(activeTab);
   renderStats(document.getElementById('stats-content'));
   renderStatsBreakdown('domain');
   wireStatsSubTabs();
+}
+
+function renderYearNav() {
+  const nav = document.getElementById('year-nav');
+  nav.innerHTML = YEARS.map(y => `
+    <li>
+      <button class="year-btn${y === activeYear ? ' active' : ''}" data-year="${y}"
+              ${y === activeYear ? 'aria-current="true"' : ''}>
+        <span class="year-btn-year">${y}</span>
+        <span class="year-btn-count">${DATASETS[y].accepted_papers.length} papers</span>
+      </button>
+    </li>`).join('');
+
+  nav.querySelectorAll('.year-btn').forEach(btn => {
+    btn.addEventListener('click', () => setYear(btn.dataset.year));
+  });
+}
+
+function setYear(year) {
+  if (!DATASETS[year] || year === activeYear) return;
+  activeYear = year;
+  DATA = DATASETS[year];
+  activeDomainFilter = 'all';
+  history.replaceState(null, '', '#' + year);
+  renderYearNav();
+  renderEdition();
+}
+
+window.addEventListener('hashchange', () => {
+  const y = location.hash.replace('#','');
+  if (DATASETS[y]) setYear(y);
+});
+
+function renderEditionHeader() {
+  document.getElementById('edition-header').innerHTML = `
+    <h2 class="edition-title">${escHtml(String(DATA.year))} Edition</h2>
+    <p class="edition-meta">
+      ${escHtml(DATA.event)}
+      <span class="edition-sep">·</span>
+      ${DATA.accepted_papers.length} papers
+      <span class="edition-sep">·</span>
+      ${DATA.requirements_for_trustworthy_ai.universal.length
+        + DATA.requirements_for_trustworthy_ai.domain_specific.length
+        + DATA.requirements_for_trustworthy_ai.customizable.length} requirements
+    </p>`;
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -96,7 +166,7 @@ function paperBadges(papers) {
     const inner = `<span class="paper-badge-title">${escHtml(info.title)}</span>`
                 + `<span class="paper-badge-authors">${escHtml(authorsDisplay)}</span>`;
     if (info.pdf) {
-      return `<a class="paper-badge" href="${escHtml(info.pdf)}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
+      return `<a class="paper-badge" href="${escHtml(encodeURI(info.pdf))}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
     }
     return `<span class="paper-badge">${inner}</span>`;
   }).join('')}</div>`;
@@ -188,7 +258,9 @@ function renderDomain(container) {
         <th>Paper(s)</th>
       </tr></thead>
       <tbody>
-        ${DATA.challenges_for_trustworthy_ai.domain_specific.map(r => `
+        ${DATA.challenges_for_trustworthy_ai.domain_specific.length === 0
+          ? `<tr><td colspan="4" class="empty-state">No domain-specific challenges recorded for this edition.</td></tr>`
+          : DATA.challenges_for_trustworthy_ai.domain_specific.map(r => `
           <tr>
             <td class="rule-text">${escHtml(r.challenge)}</td>
             <td><span class="domain-chip">${escHtml(r.domain)}</span></td>
@@ -244,7 +316,9 @@ function renderCustom(container) {
         <th>Paper(s)</th>
       </tr></thead>
       <tbody>
-        ${chal.map(r => `
+        ${chal.length === 0
+          ? `<tr><td colspan="3" class="empty-state">No customized challenges recorded for this edition.</td></tr>`
+          : chal.map(r => `
           <tr>
             <td class="rule-text">${escHtml(r.challenge)}</td>
             <td class="paper-count-cell">${r.papers.length}</td>
@@ -265,6 +339,19 @@ function renderCustom(container) {
           ${paperBadges(c.papers)}
         </div>`).join('')}
     </div>`;
+}
+
+/* Attendance figures live in each edition's "stats" block; cards for
+   figures an edition has not published yet are simply left out. The
+   repository count is always derived from the data itself. */
+function statCards() {
+  const s = DATA.stats || {};
+  return [
+    { label: 'Submissions',   value: s.submissions },
+    { label: 'In Workshop',   value: s.in_workshop },
+    { label: 'Registrations', value: s.registrations },
+    { label: 'In Repository', value: DATA.accepted_papers.length },
+  ].filter(c => c.value !== undefined && c.value !== null);
 }
 
 function renderStats(container) {
@@ -316,22 +403,11 @@ function renderStats(container) {
     ${sectionLabel('Workshop Statistics')}
 
     <div class="stats-grid">
+      ${statCards().map(c => `
       <div class="stat-card">
-        <div class="stat-number">17</div>
-        <div class="stat-label">Submissions</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">13</div>
-        <div class="stat-label">In Workshop</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">59</div>
-        <div class="stat-label">Registrations</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">14</div>
-        <div class="stat-label">In Repository</div>
-      </div>
+        <div class="stat-number">${escHtml(c.value)}</div>
+        <div class="stat-label">${escHtml(c.label)}</div>
+      </div>`).join('')}
     </div>
 <!-- 
     <div class="wordcloud-wrap">
@@ -352,7 +428,7 @@ function renderStats(container) {
 
     <div id="stats-breakdown"></div>
 
-    <h3 class="sub-heading" style="margin-top:2.5rem">Accepted Papers — RETRAI 2025</h3>
+    <h3 class="sub-heading" style="margin-top:2.5rem">Accepted Papers — RETRAI ${escHtml(String(DATA.year))}</h3>
     <table class="papers-table">
       <thead><tr>
         <th style="width:4%">#</th>
@@ -367,7 +443,7 @@ function renderStats(container) {
           <tr>
             <td class="paper-id-cell">${p.id}</td>
             <td class="paper-title-cell">${p.pdf
-              ? `<a href="${escHtml(p.pdf)}" target="_blank" rel="noopener noreferrer" style="color:var(--brand);text-decoration:none;font-weight:500;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${escHtml(p.title)}</a>`
+              ? `<a href="${escHtml(encodeURI(p.pdf))}" target="_blank" rel="noopener noreferrer" style="color:var(--brand);text-decoration:none;font-weight:500;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${escHtml(p.title)}</a>`
               : escHtml(p.title)
             }</td>
             <td class="paper-authors">${escHtml(p.authors.join(', '))}</td>
