@@ -69,6 +69,7 @@ body {
     font-family: var(--font-body);
     margin: 0;
     padding: 0;
+    position: relative;          /* anchors the pattern layer below */
     background: var(--bg);
     color: var(--text);
     line-height: 1.75;
@@ -77,6 +78,20 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* ── Page pattern ──
+   Floating Cogs tile on the page surface only, never on the header,
+   nav or footer. Adjust `opacity` to change how strong it reads;
+   `background-size` to change how often it repeats. */
+body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url('assets/floating-cogs.svg');
+    opacity: 0.03;
+    pointer-events: none;
 }
 
 /* ── Prose paragraphs ── */
