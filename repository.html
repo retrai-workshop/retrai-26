@@ -8,6 +8,12 @@
 <script src="data.js"></script>
 </head>
 <body class="page-repository">
+<div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="loader-mark">RETRAI</div>
+  <div class="spinner"></div>
+  <div class="loader-sub">Loading</div>
+</div>
+
 
 <header class="repo-hero">
   <h1>RETRAI Repository</h1>
@@ -18,9 +24,13 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#call-for-papers">Call for Papers</a></li>
+    <li><a href="program.html">Program</a></li>
+    <li><a href="keynote.html">Keynotes</a></li>
+    <!-- <li><a href="panel.html">Panel</a></li> -->
     <li><a href="index.html#organizers">Organizers</a></li>
     <li><a href="index.html#venue">Venue</a></li>
     <li><a href="repository.html" aria-current="page">Repository</a></li>
+    <li><a href="history.html">History</a></li>
   </ul>
 </nav>
 
@@ -45,7 +55,10 @@
         </div>
 
         <div id="tab-content">
-          <div class="loading" id="loading-indicator">Loading repository data…</div>
+          <div class="loader" id="loading-indicator" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading repository</div>
+          </div>
         </div>
 
       </section>
@@ -60,7 +73,7 @@
 </main>
 
 <footer>
-  <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+  <p>&copy; 2026 RETRAI Series. All rights reserved.</p>
 </footer>
 
 <script>
@@ -70,8 +83,66 @@ let activeDomainFilter = 'all';
 /* Editions, newest first. The active one is exposed as DATA so every
    render function below reads from a single edition at a time. */
 const YEARS = Object.keys(DATASETS).sort().reverse();
-let activeYear = YEARS.includes(location.hash.replace('#','')) ? location.hash.replace('#','') : YEARS[0];
-let DATA = DATASETS[activeYear];
+
+/* Combined view across every edition. Paper ids are only unique within an
+   edition (2025 and 2026 both start at P01), so they are namespaced here and
+   every reference to them is rewritten to match. Rules, challenges and
+   concerns that recur across editions are merged into a single entry whose
+   paper list is the union of the originals. */
+const ALL = 'all';
+
+function combineEditions() {
+  const papers = [];
+  YEARS.slice().reverse().forEach(y => {
+    DATASETS[y].accepted_papers.forEach(p => {
+      papers.push(Object.assign({}, p, { id: y + '-' + p.id, displayId: p.id, edition: y }));
+    });
+  });
+
+  /* Merge a list that exists on every edition, keyed by its text field. */
+  function merge(pick, textKey) {
+    const byText = new Map();
+    YEARS.slice().reverse().forEach(y => {
+      (pick(DATASETS[y]) || []).forEach(item => {
+        const key = String(item[textKey]).trim().toLowerCase();
+        if (!byText.has(key)) byText.set(key, Object.assign({}, item, { papers: [] }));
+        const target = byText.get(key);
+        (item.papers || []).forEach(pid => {
+          const scoped = y + '-' + pid;
+          if (!target.papers.includes(scoped)) target.papers.push(scoped);
+        });
+      });
+    });
+    return Array.from(byText.values());
+  }
+
+  return {
+    title: 'RETRAI Paper Repository',
+    subtitle: 'Workshop on Requirements Engineering for Trustworthy AI',
+    event: 'All editions · ' + YEARS[YEARS.length - 1] + '–' + YEARS[0],
+    year: ALL,
+    accepted_papers: papers,
+    requirements_for_trustworthy_ai: {
+      universal:       merge(d => d.requirements_for_trustworthy_ai.universal, 'rule'),
+      domain_specific: merge(d => d.requirements_for_trustworthy_ai.domain_specific, 'rule'),
+      customizable:    merge(d => d.requirements_for_trustworthy_ai.customizable, 'rule'),
+    },
+    challenges_for_trustworthy_ai: {
+      universal:       merge(d => d.challenges_for_trustworthy_ai.universal, 'challenge'),
+      domain_specific: merge(d => d.challenges_for_trustworthy_ai.domain_specific, 'challenge'),
+      customized:      merge(d => d.challenges_for_trustworthy_ai.customized, 'challenge'),
+    },
+    trustworthy_ai_concerns: merge(d => d.trustworthy_ai_concerns, 'concern'),
+  };
+}
+
+/* Everything the UI can show: the combined view first, then the editions. */
+const VIEWS = { [ALL]: combineEditions() };
+YEARS.forEach(y => { VIEWS[y] = DATASETS[y]; });
+
+const requested = location.hash.replace('#','');
+let activeYear = VIEWS[requested] ? requested : ALL;
+let DATA = VIEWS[activeYear];
 
 function loadData() {
   const loader = document.getElementById('loading-indicator');
@@ -88,16 +159,21 @@ function renderEdition() {
   wireStatsSubTabs();
 }
 
+function yearButton(key, label, extraClass) {
+  return `
+    <li>
+      <button class="year-btn${extraClass ? ' ' + extraClass : ''}${key === activeYear ? ' active' : ''}"
+              data-year="${key}" ${key === activeYear ? 'aria-current="true"' : ''}>
+        <span class="year-btn-year">${label}</span>
+      </button>
+    </li>`;
+}
+
 function renderYearNav() {
   const nav = document.getElementById('year-nav');
-  nav.innerHTML = YEARS.map(y => `
-    <li>
-      <button class="year-btn${y === activeYear ? ' active' : ''}" data-year="${y}"
-              ${y === activeYear ? 'aria-current="true"' : ''}>
-        <span class="year-btn-year">${y}</span>
-        <span class="year-btn-count">${DATASETS[y].accepted_papers.length} papers</span>
-      </button>
-    </li>`).join('');
+  nav.innerHTML = yearButton(ALL, 'All editions', 'year-btn-all')
+    + '<li class="year-nav-divider" aria-hidden="true"></li>'
+    + YEARS.map(y => yearButton(y, y)).join('');
 
   nav.querySelectorAll('.year-btn').forEach(btn => {
     btn.addEventListener('click', () => setYear(btn.dataset.year));
@@ -105,9 +181,9 @@ function renderYearNav() {
 }
 
 function setYear(year) {
-  if (!DATASETS[year] || year === activeYear) return;
+  if (!VIEWS[year] || year === activeYear) return;
   activeYear = year;
-  DATA = DATASETS[year];
+  DATA = VIEWS[year];
   activeDomainFilter = 'all';
   history.replaceState(null, '', '#' + year);
   renderYearNav();
@@ -116,12 +192,14 @@ function setYear(year) {
 
 window.addEventListener('hashchange', () => {
   const y = location.hash.replace('#','');
-  if (DATASETS[y]) setYear(y);
+  if (VIEWS[y]) setYear(y);
 });
+
+function isCombined() { return activeYear === ALL; }
 
 function renderEditionHeader() {
   document.getElementById('edition-header').innerHTML = `
-    <h2 class="edition-title">${escHtml(String(DATA.year))} Edition</h2>
+    <h2 class="edition-title">${isCombined() ? 'All Editions' : escHtml(String(DATA.year)) + ' Edition'}</h2>
     <p class="edition-meta">
       ${escHtml(DATA.event)}
       <span class="edition-sep">·</span>
@@ -345,6 +423,24 @@ function renderCustom(container) {
    figures an edition has not published yet are simply left out. The
    repository count is always derived from the data itself. */
 function statCards() {
+  /* Across all editions, a figure is only shown when every edition reports
+     it — a partial sum labelled as a total would misrepresent the series. */
+  if (isCombined()) {
+    const totalIfComplete = key => {
+      const values = YEARS.map(y => (DATASETS[y].stats || {})[key]);
+      return values.every(v => typeof v === 'number')
+        ? values.reduce((a, b) => a + b, 0)
+        : undefined;
+    };
+    return [
+      { label: 'Editions',      value: YEARS.length },
+      { label: 'Submissions',   value: totalIfComplete('submissions') },
+      { label: 'In Workshop',   value: totalIfComplete('in_workshop') },
+      { label: 'Registrations', value: totalIfComplete('registrations') },
+      { label: 'In Repository', value: DATA.accepted_papers.length },
+    ].filter(c => c.value !== undefined && c.value !== null);
+  }
+
   const s = DATA.stats || {};
   return [
     { label: 'Submissions',   value: s.submissions },
@@ -428,7 +524,7 @@ function renderStats(container) {
 
     <div id="stats-breakdown"></div>
 
-    <h3 class="sub-heading" style="margin-top:2.5rem">Accepted Papers — RETRAI ${escHtml(String(DATA.year))}</h3>
+    <h3 class="sub-heading" style="margin-top:2.5rem">Accepted Papers — ${isCombined() ? 'All Editions' : 'RETRAI ' + escHtml(String(DATA.year))}</h3>
     <table class="papers-table">
       <thead><tr>
         <th style="width:4%">#</th>
@@ -441,7 +537,7 @@ function renderStats(container) {
       <tbody>
         ${DATA.accepted_papers.map(p => `
           <tr>
-            <td class="paper-id-cell">${p.id}</td>
+            <td class="paper-id-cell">${p.displayId || p.id}</td>
             <td class="paper-title-cell">${p.pdf
               ? `<a href="${escHtml(encodeURI(p.pdf))}" target="_blank" rel="noopener noreferrer" style="color:var(--brand);text-decoration:none;font-weight:500;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${escHtml(p.title)}</a>`
               : escHtml(p.title)
@@ -555,5 +651,6 @@ function escHtml(str) {
 
 loadData();
 </script>
+<script src="assets/loader.js"></script>
 </body>
 </html>

@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Keynotes - RETRAI 2025</title>
+    <title>Keynotes - RETRAI 2026</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-keynotes">
+<div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="loader-mark">RETRAI</div>
+  <div class="spinner"></div>
+  <div class="loader-sub">Loading</div>
+</div>
+
 <header>
     <h1>RETRAI Workshop</h1>
     <h2><b>R</b>equirement <b>E</b>ngineering for <b>T</b>rustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
@@ -17,72 +23,99 @@
         <li><a href="index.html#call-for-papers">Call for Papers</a></li>
         <li><a href="program.html">Program</a></li>
         <li><a href="keynote.html" aria-current="page">Keynotes</a></li>
-        <li><a href="panel.html">Panel</a></li>
+        <!-- <li><a href="panel.html">Panel</a></li> -->
         <li><a href="index.html#organizers">Organizers</a></li>
         <li><a href="index.html#venue">Venue</a></li>
         <li><a href="repository.html">Repository</a></li>
+        <li><a href="history.html">History</a></li>
     </ul>
 </nav>
 <main>
     <section id="program" aria-labelledby="keynotes-title">
-        <h2 id="keynotes-title">Keynotes</h2>
+        <h2 id="keynotes-title">Keynotes &mdash; RETRAI 2026</h2>
+        <p class="section-lead">
+            Three keynotes will be given at RETRAI 2026, in the order they appear in the
+            <a href="program.html">program</a>.
+        </p>
         <div class="keynotes-grid">
 
             <!-- Keynote 1 -->
-            <article class="keynote-card" itemscope itemtype="https://schema.org/Event">
-                <img class="photo" src="REEM.jpg" alt="Portrait of Keynote Speaker 1" itemprop="image" />
+            <article class="keynote-card" id="kurt-schneider" itemscope itemtype="https://schema.org/Event">
+                <img class="photo" src="assets/speaker-placeholder.svg" alt="Portrait of Kurt Schneider" itemprop="image" />
                 <div class="subgrid">
                     <div>
+                        <div class="keynote-index">Keynote 1</div>
                         <h3 class="speaker-name" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                            <span itemprop="name">Reem Ayad</span>
+                            <span itemprop="name">Professor Kurt Schneider</span>
                         </h3>
-                        <div class="speaker-affil">Department of Psychology, University of Toronto</div>
+                        <div class="speaker-affil">Leibniz Universität Hannover, Germany</div>
                     </div>
                     <div>
-                        <div class="talk-title" itemprop="name"> The AI social contract: How human-AI relationships shape moral expectations </div>
+                        <div class="talk-title" itemprop="name">Delegating Human Values to LLMs</div>
                         <details open>
-                            <summary>Abstract</summary>
-                            <p class="abstract" itemprop="description">
-                                We excuse mistakes from friends that we’d condemn from strangers. What about the mistakes of AI friends? In this talk, I examine how the social embeddedness of AI agents—whether as impersonal machines or collaborators and companions—shapes people’s moral expectations and judgments of AI behavior in medical, political, and social contexts. By mapping the social contours of human-AI moral judgment, we can better understand how human-AI trust develops and, importantly, how we behave when that trust is broken.
-
-                            </p>
-                        </details>
-                        <details>
                             <summary>Bio</summary>
                             <p class="bio" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                                <span itemprop="description">Reem Ayad is a PhD candidate at the University of Toronto and a SSHRC Doctoral Fellow. Her research examines the moral consequences of human-AI relationships with the goal of codifying unique human-AI socio-relational norms. Reem holds a BSc from the University of Toronto, an LLB from University College London, and is a Graduate Affiliate at the Schwartz Reisman Institute for Technology and Society.</span>
+                                <span itemprop="description">Kurt Schneider studied computer science in Erlangen and received a PhD in software engineering from Stuttgart University. He held a PostDoc position at the Center for LifeLong Learning and Design at the University of Colorado at Boulder, USA. In 1996, he joined the Daimler Research Center in Ulm as a researcher and manager. Since 2003, Kurt Schneider is a full professor of software engineering at Leibniz Universität Hannover, Germany. He specializes in the intersection of humans with technology, such as requirements engineering, software quality &ndash; and human values.</span>
                             </p>
                         </details>
-
                     </div>
                 </div>
             </article>
 
             <!-- Keynote 2 -->
-            <article class="keynote-card" itemscope itemtype="https://schema.org/Event">
-                <img class="photo" src="DIDAR.jpg" alt="Portrait of Keynote Speaker 2" itemprop="image" />
+            <article class="keynote-card" id="mehdi-mirakhorli" itemscope itemtype="https://schema.org/Event">
+                <img class="photo" src="assets/speaker-placeholder.svg" alt="Portrait of Mehdi Mirakhorli" itemprop="image" />
                 <div class="subgrid">
                     <div>
+                        <div class="keynote-index">Keynote 2</div>
                         <h3 class="speaker-name" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                            <span itemprop="name">Didar Zowghi</span>
+                            <span itemprop="name">Professor Mehdi Mirakhorli</span>
                         </h3>
-                        <div class="speaker-affil">CSIRO’s Data61, Australia’s National Science Agency</div>
+                        <div class="speaker-affil">University of Hawai&#699;i at M&#257;noa, USA</div>
                     </div>
                     <div>
-                        <div class="talk-title" itemprop="name">On the Role of Transparency in Building Inclusive and Trustworthy AI Systems</div>
+                        <div class="talk-title" itemprop="name">Engineering Trustworthy AI Systems: Lessons from Autonomous Cyber Operations</div>
                         <details open>
                             <summary>Abstract</summary>
                             <p class="abstract" itemprop="description">
-                                Transparency is widely acknowledged as a foundation of responsible, inclusive, and trustworthy artificial intelligence (AI). This talk examines how transparency requirements can be articulated and operationalised throughout the AI system lifecycle. As a case study, I draw on the Australian Government’s mandate requiring public agencies to publish AI transparency statements. Based on an analysis of 100 such statements, I highlight the breadth and depth of interpretations and reveal key patterns and gaps in how transparency is currently understood and communicated. I argue that core practices from requirements engineering, especially continuous stakeholder engagement, can provide a structured foundation for embedding transparency and inclusion into the design, development, and governance of AI systems. This approach moves beyond superficial compliance and toward transparency as a socio-technical commitment grounded in shared understanding and traceable justification.
+                                The next generation of AI systems will reason, plan, and act autonomously in increasingly complex environments. Building trust in these systems requires more than trustworthy models, it requires engineering trustworthy AI systems. This keynote presents lessons learned from autonomous cyber operations and discusses how they inform the engineering of human-AI teaming, bounded autonomy, verification, and accountability. The talk concludes with a vision for how these principles can shape the future of trustworthy AI and requirements engineering.
                             </p>
                         </details>
                         <details>
                             <summary>Bio</summary>
                             <p class="bio" itemprop="performer" itemscope itemtype="https://schema.org/Person">
-                                <span itemprop="description">Professor Didar Zowghi is Senior Principal Research Scientist at CSIRO’s Data61, leading research on Diversity and Inclusion in AI and Requirements Engineering for Responsible AI. She is also Emeritus Professor at the University of Technology Sydney and Conjoint Professor at the University of New South Wales. At UTS, she held several leadership roles over 22 years, including Deputy Dean of Graduate Research and Head of Software Engineering, after earlier work in the UK and Australian software industry. Her 25+ years of research focus on requirements engineering, evidence-based methods, and human-centred design, with extensive supervision and international collaborations. She has served the IEEE RE community in key leadership roles, receiving its Lifetime Service Award in 2019, and was named IEEE Computer Society Distinguished Educator in 2022. She has published 250+ articles with 140 collaborators from 40+ countries, and regularly delivers keynotes on software engineering, Responsible AI, and diversity and inclusion.</span>
+                                <span itemprop="description">Mehdi Mirakhorli is a Professor of Computer Science at the University of Hawai&#699;i at M&#257;noa and the Founding Director of the M&#257;noa Indo-Pacific Cybersecurity Institute. His research focuses on trustworthy autonomous AI, offensive cybersecurity, software and systems engineering, and human-AI teaming in high-consequence environments. He has led projects of national importance for the U.S. Department of Homeland Security, the Cybersecurity and Infrastructure Security Agency, the Defense Advanced Research Projects Agency, the U.S. Air Force, the Office of Naval Research, the U.S. Department of Transportation, and the National Institutes of Health.</span>
                             </p>
                         </details>
-                    
+                    </div>
+                </div>
+            </article>
+
+            <!-- Keynote 3 -->
+            <article class="keynote-card" id="jocelyn-maclure" itemscope itemtype="https://schema.org/Event">
+                <img class="photo" src="assets/speaker-placeholder.svg" alt="Portrait of Jocelyn Maclure" itemprop="image" />
+                <div class="subgrid">
+                    <div>
+                        <div class="keynote-index">Keynote 3</div>
+                        <h3 class="speaker-name" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">Professor Jocelyn Maclure</span>
+                        </h3>
+                        <div class="speaker-affil">McGill University, Canada</div>
+                    </div>
+                    <div>
+                        <div class="talk-title" itemprop="name">AI Ethics and Governance: Why the &ldquo;Value-Alignment&rdquo; Project is Misguided</div>
+                        <details open>
+                            <summary>Abstract</summary>
+                            <p class="abstract" itemprop="description">
+                                AI systems based on deep artificial neural networks are widely regarded as epistemically opaque, yet they are increasingly used to make or support ethically consequential decisions. While some philosophers argue that individuals subjected to AI&#8209;based decisions in high&#8209;stakes contexts should be granted a &ldquo;right to explanation,&rdquo; the view that AI&rsquo;s opacity may be less problematic than commonly assumed is gaining traction. This paper examines one increasingly influential argument for relativizing the significance of AI&rsquo;s epistemic opacity, which rests on an analogy between deep artificial networks and human expertise. Grounded in the &ldquo;fact of epistemic dependence,&rdquo; this argument claims that (1) we are often warranted in deferring epistemically to human experts even when we do not understand the reasons supporting their beliefs, and (2) a similar attitude should be extended to highly accurate black box AI systems. I argue that this attempted refutation does not withstand closer examination. I suggest that the argument from the analogy between AI and human experts loses much of its force against the backdrop of a richer articulation of human linguistic and semantic capacities, as well as to the social nature of human cognition. In particular, the expert&ndash;layperson relationship should not be abstracted from the web of social relations and norms in which it is embedded. A salient feature of this relationship is that at least some human experts are able to enhance laypeople&rsquo;s understanding of complex subject matter by offering partial yet valuable explanations. Moreover, experts&rsquo; participation in the public exchange of reasons generates discursive commitments which act as incentives to adhere to sound epistemic norms, and helps nonexperts form appropriate doxastic attitudes toward experts&rsquo; public claims. In closing, I suggest that properly validated AI systems should be analogized with other epistemic technologies rather than with human epistemic authorities.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Bio</summary>
+                            <p class="bio" itemprop="performer" itemscope itemtype="https://schema.org/Person">
+                                <span itemprop="description">Jocelyn Maclure is full professor of philosophy and Jarislowsky Chair in Human Nature and Technology at McGill University. His current work spans across speculative and practical questions paused by progress in AI research and development. His recent publications appeared in journals such as Minds &amp; Machines, AI &amp; Ethics, AI &amp; Society and Digital Society. As a public philosopher, he chaired the Ethics in Science and Technology Commission of the Quebec Government from 2017 to 2024, and contributed to initiatives such as the Montreal Declaration for the Responsible Development of AI and the UNESCO AI Ethics Recommendation. In 2023, he was Mercator Visiting Professor for AI in the Human Context at the University of Bonn.</span>
+                            </p>
+                        </details>
                     </div>
                 </div>
             </article>
@@ -91,7 +124,8 @@
     </section>
 </main>
 <footer>
-    <p>&copy; 2025 RETRAI Series. All rights reserved.</p>
+    <p>&copy; 2026 RETRAI Series. All rights reserved.</p>
 </footer>
+<script src="assets/loader.js"></script>
 </body>
 </html>

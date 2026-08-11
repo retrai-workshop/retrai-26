@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-home">
+<div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="loader-mark">RETRAI</div>
+  <div class="spinner"></div>
+  <div class="loader-sub">Loading</div>
+</div>
+
     <header>
         <h1>RETRAI Workshop</h1>
         <h2><b>R</b>equirement <b>E</b>ngineering
@@ -17,11 +23,12 @@ for <b>TR</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
             <li><a href="#home" aria-current="page">Home</a></li>
             <li><a href="#call-for-papers">Call for Papers</a></li>
             <li><a href="program.html">Program</a></li>
-            <!--<li><a href="keynote.html">Keynotes</a></li>-->
+            <li><a href="keynote.html">Keynotes</a></li>
             <!--<li><a href="panel.html">Panel</a></li>-->
             <li><a href="#organizers">Organizers</a></li>
             <li><a href="#venue">Venue</a></li>
             <li><a href="repository.html">Repository</a></li>
+            <li><a href="history.html">History</a></li>
         </ul>
     </nav>
     <div class="deadline-banner">
@@ -32,6 +39,34 @@ for <b>TR</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence</h2>
             <h2>Welcome to RETRAI 2026</h2>
             <p>AI-based systems are increasingly integrated into societal infrastructures, performing daily tasks alongside humans and influencing critical decision-making processes. However, unlike human actions, which may be governed by comprehensive legislation and enforcement procedures, AI systems are often built and deployed without clearly specifying the requirements necessary to ensure their responsible, and trustworthy operation. Clearly specifying requirements is important to ensuring that AI systems can be safely and responsibly integrated into society. Without well-defined requirements, it becomes difficult to assess whether such systems meet expectations for accountability, fairness, and ethical behavior. The complexity of this task is compounded by the need for multidisciplinary expertise, encompassing legal, ethical, and domain-specific knowledge.<span style="border-bottom: 2px solid var(--brand); padding-bottom: 1px;"><b> R</b>equirement <b>E</b>ngineering for <b>Tr</b>ustworthy <b>A</b>rtificial <b>I</b>ntelligence proposed (<b>RETRAI</b>)</span> workshop aims to bring together researchers and practitioners from these diverse fields to collaboratively establish a foundation for requirements engineering techniques specifically tailored for trustworthy AI-based systems. By fostering collaboration among multidisciplinary experts, this workshop will provide a platform to collect, refine, and share requirements that can be reused, extended, or adapted for future systems.</p>
         </section>
+
+        <section id="program-highlight">
+            <h2>Program &amp; Keynotes</h2>
+            <p>Please explore the program for <b>RETRAI&rsquo;26</b>, taking place on Tuesday 18 August 2026.
+               We are delighted to welcome this year&rsquo;s keynote speakers:</p>
+            <ul class="keynote-teasers">
+                <li>
+                    <div class="teaser-name">Professor Kurt Schneider</div>
+                    <div class="teaser-affil">Leibniz Universität Hannover, Germany</div>
+                    <div class="teaser-title">Delegating Human Values to LLMs</div>
+                </li>
+                <li>
+                    <div class="teaser-name">Professor Mehdi Mirakhorli</div>
+                    <div class="teaser-affil">University of Hawai&#699;i at M&#257;noa, USA</div>
+                    <div class="teaser-title">Engineering Trustworthy AI Systems: Lessons from Autonomous Cyber Operations</div>
+                </li>
+                <li>
+                    <div class="teaser-name">Professor Jocelyn Maclure</div>
+                    <div class="teaser-affil">McGill University, Canada</div>
+                    <div class="teaser-title">AI Ethics and Governance: Why the &ldquo;Value-Alignment&rdquo; Project is Misguided</div>
+                </li>
+            </ul>
+            <div class="cta-row">
+                <a class="cta" href="program.html">View the full program</a>
+                <a class="cta cta-secondary" href="keynote.html">Keynote abstracts &amp; bios</a>
+            </div>
+        </section>
+
         <section id="call-for-papers">
 			<h2>Call for Papers</h2>
 			 <p><b>RETRAI 2026</b> is the second annual workshop aimed at addressing the specification, debugging, and compliance of requirements for trustworthy AI-based systems. As the interaction between these systems and humans continues to grow, the importance of embedding trustworthiness considerations into the design and development process becomes increasingly important. The workshop aims to discuss the challenges associated with developing trustworthy AI systems and highlights the necessity of engaging the requirements engineering community in tackling these issues. Researchers from disciplines such as philosophy, psychology, sociology, law, computer science, engineering, and related fields are encouraged to apply.
@@ -167,5 +202,6 @@ English, in PDF format and must conform to the IEEEtran Proceedings Format. LaTe
     <footer>
         <p>&copy; 2026 RETRAI Series. All rights reserved.</p>
     </footer>
+<script src="assets/loader.js"></script>
 </body>
 </html>
