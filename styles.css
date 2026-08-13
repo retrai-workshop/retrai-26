@@ -90,7 +90,7 @@ body::before {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-image: url('assets/floating-cogs.svg');
+    background-image: url('assets/images/floating-cogs.svg');
     opacity: 0.03;
     pointer-events: none;
 }
@@ -813,19 +813,24 @@ footer p {
     border-radius: var(--radius);
     padding: 1.5rem;
     display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 190px 1fr;
+    gap: 2rem;
     box-shadow: var(--shadow-sm);
 }
 
 .page-keynotes .photo {
-    width: 130px;
-    height: 130px;
+    width: 190px;
+    height: 190px;
     border-radius: var(--radius);
     object-fit: cover;
     border: 1px solid var(--border);
     background: #fff;
 }
+
+/* Per-photo framing. Portraits whose subject is not centred in the source
+   need their focal point nudged, or `cover` trims the face instead of the
+   background. Jocelyn's photo is pre-cropped square, so it needs nothing. */
+#kurt-schneider .photo { object-position: center 20%; }
 
 .page-keynotes .speaker-name {
     margin: 0 0 0.2rem 0;
@@ -889,7 +894,9 @@ footer p {
 
 @media (max-width: 720px) {
     .page-keynotes .keynote-card { grid-template-columns: 1fr; }
-    .page-keynotes .photo { width: 100%; height: 220px; }
+    /* A full-width band would crop a head-and-shoulders portrait to a letterbox
+       slice of the face. Keep the square and just grow it a little. */
+    .page-keynotes .photo { width: 150px; height: 150px; }
 }
 
 
@@ -1007,7 +1014,7 @@ footer p {
 
 @media (max-width: 720px) {
     .page-panel .card { grid-template-columns: 1fr; }
-    .page-panel .photo { width: 100%; height: 240px; }
+    .page-panel .photo { width: 150px; height: 150px; }
 }
 
 
