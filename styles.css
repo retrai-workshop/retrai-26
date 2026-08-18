@@ -282,9 +282,7 @@ footer p {
 }
 
 /* ── Trailing link row (keynotes, panel) ── */
-.links { margin-top: 0.5rem; }
-.links a { color: #3498db; text-decoration: none; font-size: 0.9rem; }
-.links a:hover { text-decoration: underline; }
+.links { margin-top: 0.5rem; font-size: 0.9rem; }
 
 /* ── Standfirst under a section heading (program, keynotes, history) ── */
 .section-lead {
@@ -295,13 +293,41 @@ footer p {
     line-height: 1.7;
 }
 
-.section-lead a {
-    color: inherit;
-    border-bottom: 1px solid rgba(var(--brand-rgb), 0.4);
-    text-decoration: none;
+/* ── Inline links in running text ──
+   A single treatment for every prose link outside the home page, so nothing
+   falls back to the browser's default blue. The rule sits below the baseline
+   and gains colour and weight on hover, rather than appearing on it. */
+.links a,
+.section-lead a,
+.page-program .note a,
+.page-panel .panel-desc a,
+.page-panel .bio a,
+.page-keynotes .abstract a,
+.page-keynotes .bio a,
+.page-history .edition-meta a {
+    color: var(--brand);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--brand-rgb), 0.3);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    border-bottom: 0;
+    transition: color 0.18s ease, text-decoration-color 0.18s ease,
+                text-decoration-thickness 0.18s ease;
 }
 
-.section-lead a:hover { color: var(--brand); }
+.links a:hover,
+.section-lead a:hover,
+.page-program .note a:hover,
+.page-panel .panel-desc a:hover,
+.page-panel .bio a:hover,
+.page-keynotes .abstract a:hover,
+.page-keynotes .bio a:hover,
+.page-history .edition-meta a:hover {
+    color: var(--brand-2);
+    text-decoration-color: var(--brand-2);
+    text-decoration-thickness: 2px;
+}
 
 /* ── Loader ──
    Two counter-rotating arcs over a faint track. The outer arc carries the
@@ -495,7 +521,10 @@ footer p {
 
 .page-home .centered-list li { break-inside: avoid; }
 
-/* ── Organizer cards ── */
+/* ── Organizer cards ──
+   Initials avatar, name and institution as the head; department as
+   supporting detail; email as a quiet chip pinned to the bottom so cards
+   of differing text length still line up. */
 .page-home .solo-card-wrap {
     display: flex;
     justify-content: flex-start;
@@ -504,74 +533,128 @@ footer p {
 
 .page-home .solo-card-wrap .organizer-card {
     width: 100%;
-    max-width: 300px;
+    max-width: 340px;
 }
 
 .page-home .organizers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
     margin-top: 1.5rem;
 }
 
 .page-home .organizer-card {
     background: #fff;
     border: 1px solid var(--border);
-    border-top: 3px solid var(--brand);
-    border-radius: var(--radius);
-    padding: 1.5rem 1.6rem;
+    border-radius: 14px;
+    padding: 1.5rem;
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 0.9rem;
     text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
+
+.page-home .organizer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: rgba(var(--brand-rgb), 0.28);
+}
+
+.page-home .organizer-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.page-home .organizer-avatar {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand-tint);
+    border: 1px solid rgba(var(--brand-rgb), 0.16);
+    color: var(--brand);
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.page-home .organizer-id { min-width: 0; }
 
 .page-home .organizer-name {
     font-weight: 700;
     font-size: 1.02rem;
-    color: var(--text);
-    margin-bottom: 0.4rem;
+    line-height: 1.3;
     letter-spacing: -0.01em;
 }
 
-.page-home .organizer-dept {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.45;
-    font-style: italic;
-    margin-bottom: 0.25rem;
+/* Beats the generic .page-home main a underline treatment. */
+.page-home main .organizer-name a {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 0;
+    transition: color 0.18s ease;
 }
 
+.page-home main .organizer-name a:hover { color: var(--brand); }
+
 .page-home .organizer-inst {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--brand);
     letter-spacing: 0.01em;
-    margin-top: auto;
+    line-height: 1.4;
 }
 
-.page-home .organizer-email {
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border);
-    font-size: 0.78rem;
+.page-home .organizer-dept {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: auto;
+}
+
+.page-home main a.organizer-email {
+    align-self: flex-start;
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--brand-tint);
+    border: 1px solid rgba(var(--brand-rgb), 0.14);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.76rem;
     color: var(--muted);
     text-decoration: none;
     letter-spacing: 0.01em;
-    word-break: break-all;
+    overflow-wrap: anywhere;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-.page-home .organizer-email:hover {
+.page-home main a.organizer-email::before {
+    content: '\2709';
+    font-size: 0.9em;
+    opacity: 0.6;
+}
+
+.page-home main a.organizer-email:hover {
+    background: var(--brand-tint-mid);
+    border-color: rgba(var(--brand-rgb), 0.34);
     color: var(--brand);
-    text-decoration: underline;
 }
 
 .page-home .ext-arrow {
     display: inline-block;
     font-size: 0.7em;
     margin-left: 0.25em;
-    opacity: 0.45;
+    opacity: 0.4;
     vertical-align: super;
     transition: opacity 0.15s;
 }
@@ -1010,6 +1093,47 @@ footer p {
 .page-panel .bio {
     line-height: 1.65;
     font-size: 0.925rem;
+}
+
+/* Cross-reference for panelists who also speak elsewhere in the program.
+   A chip rather than a text link: it is a navigational aside, not part of
+   the bio, so it should read as a distinct object. */
+.page-panel .card-note {
+    margin-top: 1.1rem;
+}
+
+.page-panel .card-note a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--brand-tint);
+    border: 1px solid rgba(var(--brand-rgb), 0.18);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--brand);
+    text-decoration: none;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+/* Arrow rendered from CSS so the markup stays plain text. */
+.page-panel .card-note a::after {
+    content: '\2192';
+    font-size: 0.95em;
+    opacity: 0.55;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.page-panel .card-note a:hover {
+    background: var(--brand-tint-mid);
+    border-color: rgba(var(--brand-rgb), 0.42);
+}
+
+.page-panel .card-note a:hover::after {
+    transform: translateX(3px);
+    opacity: 1;
 }
 
 @media (max-width: 720px) {
@@ -1722,13 +1846,7 @@ footer p {
     line-height: 1.6;
 }
 
-.page-history .edition-meta a {
-    color: inherit;
-    border-bottom: 1px solid rgba(var(--brand-rgb), 0.4);
-    text-decoration: none;
-}
-
-.page-history .edition-meta a:hover { color: var(--brand); }
+/* Link styling comes from the shared inline-link rule in section 4. */
 
 .page-history .edition-links {
     display: flex;
